@@ -219,7 +219,7 @@ export default function About() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-vikasa-espresso">Our Story</h1>
-            <p className="text-xl text-gray-700 mb-8">Transforming businesses through expertise, innovation, and partnership since 2003.</p>
+            <p className="text-xl text-gray-700 mb-8">Transforming businesses through expertise, innovation, and partnership since 2005.</p>
             <div className="w-32 h-1 bg-vikasa-gold mx-auto"></div>
           </div>
         </div>
@@ -247,12 +247,12 @@ export default function About() {
                 <Link href="/contact" className="bg-vikasa-gold hover:bg-vikasa-gold-light text-vikasa-espresso font-semibold px-5 py-2 rounded-md transition-colors">
                   Contact Us
                 </Link>
-                <Link href="/services" className="border border-vikasa-espresso text-vikasa-espresso hover:bg-vikasa-espresso hover:text-white font-semibold px-5 py-2 rounded-md transition-colors">
+                <Link href="/service" className="border border-vikasa-espresso text-vikasa-espresso hover:bg-vikasa-espresso hover:text-white font-semibold px-5 py-2 rounded-md transition-colors">
                   Our Services
                 </Link>
               </div>
             </div>
-            <div className="relative h-96 bg-vikasa-latte-50 rounded-lg overflow-hidden">
+            <div className="relative h-96 bg-vikasa-latte/30 rounded-lg overflow-hidden">
               {/* Replace with actual image */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <p className="text-vikasa-latte text-lg font-medium">Company Founding Team Image</p>
@@ -274,8 +274,6 @@ export default function About() {
             <div className="space-y-16">
               {timelineEvents.map((event, index) => (
                 <div key={index} className={`relative flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                  {/* Timeline dot */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-vikasa-gold z-10"></div>
                   
                   {/* Content */}
                   <div className="w-5/12"></div>
@@ -400,7 +398,7 @@ export default function About() {
               </div>
             </div>
             
-            <div className="order-1 lg:order-2 relative h-96 bg-vikasa-latte-50 rounded-lg overflow-hidden">
+            <div className="order-1 lg:order-2 relative h-96 bg-vikasa-latte/30 rounded-lg overflow-hidden">
               {/* Replace with actual image */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <p className="text-vikasa-latte text-lg font-medium">Methodology Image</p>
@@ -771,7 +769,7 @@ export default function About() {
             </div>
             
             <div className="mt-12 text-center">
-              <p className="text-lg mb-6">Have more questions about how we can help your organization?</p>
+              <p className="text-lg mb-6 text-vikasa-espresso">Have more questions about how we can help your organization?</p>
               <Link href="/contact" className="bg-vikasa-gold hover:bg-vikasa-gold-light text-vikasa-espresso font-semibold px-6 py-3 rounded-md transition-colors inline-block">
                 Contact Our Team
               </Link>

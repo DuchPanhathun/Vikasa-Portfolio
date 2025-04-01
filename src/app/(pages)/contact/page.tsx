@@ -22,11 +22,11 @@ export default function Contact() {
       </section>
 
       {/* Contact Information Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-vikasa-espresso-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {/* General Inquiries */}
-            <div className="bg-vikasa-espresso-50 rounded-lg p-8 text-center">
+            <div className="bg-vikasa-espresso-100 rounded-lg p-8 text-center">
               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-md">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-espresso" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -38,7 +38,7 @@ export default function Contact() {
             </div>
 
             {/* Customer Support */}
-            <div className="bg-vikasa-gold-50 rounded-lg p-8 text-center">
+            <div className="bg-vikasa-gold-100 rounded-lg p-8 text-center">
               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-md">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -51,7 +51,7 @@ export default function Contact() {
             </div>
 
             {/* Business Opportunities */}
-            <div className="bg-vikasa-latte-50 rounded-lg p-8 text-center">
+            <div className="bg-vikasa-latte-100 rounded-lg p-8 text-center">
               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-md">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-latte" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -66,7 +66,7 @@ export default function Contact() {
       </section>
 
       {/* Contact Form and Offices Section */}
-      <section className="py-16 bg-vikasa-espresso-50">
+      <section className="py-16 bg-vikasa-gold-50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-16">
             {/* Contact Form */}
@@ -248,40 +248,40 @@ export default function Contact() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-vikasa-espresso-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-vikasa-espresso mb-12 text-center">Frequently Asked Questions</h2>
           
           <div className="max-w-4xl mx-auto space-y-8">
-            <div className="bg-vikasa-espresso-50 rounded-lg p-6">
+            <div className="bg-vikasa-espresso-100 rounded-lg p-6">
               <h3 className="text-xl font-bold text-vikasa-espresso mb-3">What types of organizations does Vikasa work with?</h3>
               <p className="text-gray-700">
                 Vikasa partners with organizations across various industries, including Fortune 500 companies, mid-market enterprises, high-growth startups, and non-profit organizations. Our diverse client base spans sectors such as financial services, healthcare, technology, manufacturing, retail, and professional services.
               </p>
             </div>
             
-            <div className="bg-vikasa-espresso-50 rounded-lg p-6">
+            <div className="bg-vikasa-espresso-100 rounded-lg p-6">
               <h3 className="text-xl font-bold text-vikasa-espresso mb-3">How quickly can Vikasa respond to a new project request?</h3>
               <p className="text-gray-700">
                 We typically respond to new inquiries within 24-48 business hours. Following an initial consultation, we can generally provide a proposal within one week, depending on project scope and complexity. For urgent matters, please indicate the time-sensitive nature of your request when contacting us.
               </p>
             </div>
             
-            <div className="bg-vikasa-espresso-50 rounded-lg p-6">
+            <div className="bg-vikasa-espresso-100 rounded-lg p-6">
               <h3 className="text-xl font-bold text-vikasa-espresso mb-3">Can Vikasa provide references from past clients?</h3>
               <p className="text-gray-700">
                 Yes, we're happy to provide references from past clients who have worked on similar projects or faced comparable challenges. After our initial discussions to understand your specific needs, we can connect you with relevant client references upon request.
               </p>
             </div>
             
-            <div className="bg-vikasa-espresso-50 rounded-lg p-6">
+            <div className="bg-vikasa-espresso-100 rounded-lg p-6">
               <h3 className="text-xl font-bold text-vikasa-espresso mb-3">Does Vikasa offer virtual consulting services?</h3>
               <p className="text-gray-700">
                 Yes, we offer fully virtual consulting engagements as well as hybrid models that combine on-site and remote work. Our team has extensive experience delivering high-impact results through digital collaboration tools and methodologies, ensuring seamless communication regardless of physical location.
               </p>
             </div>
             
-            <div className="bg-vikasa-espresso-50 rounded-lg p-6">
+            <div className="bg-vikasa-espresso-100 rounded-lg p-6">
               <h3 className="text-xl font-bold text-vikasa-espresso mb-3">How does Vikasa approach project pricing?</h3>
               <p className="text-gray-700">
                 Our pricing models vary based on engagement type, scope, and duration. We offer fixed-fee project pricing, retainer arrangements, and value-based pricing options. Following initial consultations to understand your specific needs and objectives, we provide transparent pricing proposals tailored to your project requirements.

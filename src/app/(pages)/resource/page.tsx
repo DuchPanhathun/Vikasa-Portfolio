@@ -460,7 +460,7 @@ export default function Resources() {
       </section>
       
       {/* 1. Blog/Articles Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-vikasa-gold-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl font-bold text-vikasa-espresso">Latest Insights & Articles</h2>
@@ -549,7 +549,7 @@ export default function Resources() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {resourceCategories.map((category) => (
                 <Link href={`/resource/blog/category/${category.slug}`} key={category.slug} className="group">
-                  <div className="bg-white border border-gray-100 rounded-lg p-4 text-center transition-all hover:shadow-md hover:border-vikasa-gold-light">
+                  <div className="bg-white border border-gray-200 rounded-lg p-4 text-center transition-all hover:shadow-md hover:border-vikasa-gold-light">
                     <div className="text-2xl mb-2">{category.icon}</div>
                     <h4 className="font-semibold text-vikasa-espresso group-hover:text-vikasa-latte transition-colors">{category.name}</h4>
                     <p className="text-sm text-gray-500">{category.count} articles</p>
@@ -623,7 +623,7 @@ export default function Resources() {
       </section>
       
       {/* 3. Free Tools & Templates Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-vikasa-gold-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl font-bold text-vikasa-espresso">Free Tools & Templates</h2>
@@ -687,7 +687,7 @@ export default function Resources() {
       </section>
       
       {/* 4. Webinars & Videos Section */}
-      <section className="py-16 bg-vikasa-gold-50">
+      <section className="py-16 bg-vikasa-espresso-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl font-bold text-vikasa-espresso">Webinars & Videos</h2>
@@ -807,7 +807,7 @@ export default function Resources() {
       </section>
       
       {/* 5. E-Books & Guides Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-vikasa-gold-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl font-bold text-vikasa-espresso">E-Books & Guides</h2>
@@ -968,7 +968,7 @@ export default function Resources() {
       </section>
       
       {/* 7. Newsletter Archive Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-vikasa-gold-50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row gap-12">
             {/* Newsletter Archive Column */}
@@ -985,7 +985,7 @@ export default function Resources() {
               
               <div className="space-y-4">
                 {newsletters.map((newsletter) => (
-                  <div key={newsletter.id} className="border border-gray-100 rounded-lg p-5 hover:border-vikasa-gold transition-colors">
+                  <div key={newsletter.id} className="border border-gray-200 rounded-lg p-5 hover:border-vikasa-gold bg-white transition-colors">
                     <div className="flex justify-between items-start mb-2">
                       <h3 className="text-xl font-bold text-vikasa-espresso">{newsletter.title}</h3>
                       <span className="text-xs text-gray-500 bg-vikasa-espresso-50 px-3 py-1 rounded-full">
@@ -1026,7 +1026,7 @@ export default function Resources() {
                   <input 
                     type="email" 
                     placeholder="Your email address" 
-                    className="flex-grow px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-vikasa-gold focus:border-vikasa-gold"
+                    className="flex-grow px-4 py-3 border border-gray-300 text-vikasa-espresso rounded-md shadow-sm focus:outline-none focus:ring-vikasa-gold focus:border-vikasa-gold"
                   />
                   <button className="bg-vikasa-gold hover:bg-vikasa-gold-dark text-white font-semibold px-6 py-3 rounded-md transition-colors">
                     Subscribe Now

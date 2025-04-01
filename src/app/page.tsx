@@ -92,7 +92,7 @@ export default function Home() {
             <Link href="/contact" className="bg-vikasa-gold hover:bg-vikasa-latte text-vikasa-espresso font-semibold px-8 py-3 rounded-md transition-colors text-lg">
               Book a Consultation
             </Link>
-            <Link href="/courses" className="bg-white hover:bg-gray-100 text-vikasa-espresso font-semibold px-8 py-3 rounded-md transition-colors text-lg">
+            <Link href="/resource" className="bg-white hover:bg-gray-100 text-vikasa-espresso font-semibold px-8 py-3 rounded-md transition-colors text-lg">
               Explore Courses
             </Link>
           </div>
@@ -100,7 +100,7 @@ export default function Home() {
       </section>
 
       {/* 2. Key Benefits Bar */}
-      <section className="bg-gray-100 py-10">
+      <section className="bg-vikasa-espresso-50 py-10">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="flex flex-col items-center text-center">
@@ -147,9 +147,9 @@ export default function Home() {
       </section>
 
       {/* 3. Services Preview */}
-      <section className="py-20 bg-vikasa-espresso">
+      <section className="py-20 bg-vikasa-gold-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white">Our Services</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-vikasa-espresso">Our Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {/* Service Card 1 */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105">
@@ -212,7 +212,7 @@ export default function Home() {
       </section>
 
       {/* 4. Featured Case Study */}
-      <section className="bg-gray-50 py-20">
+      <section className="bg-vikasa-espresso-50 py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-vikasa-espresso">Client Success Story</h2>
           <div className="bg-white rounded-xl shadow-xl overflow-hidden">
@@ -262,9 +262,9 @@ export default function Home() {
       </section>
 
       {/* 5. Testimonial Slider */}
-      <section className="py-20 bg-vikasa-espresso">
+      <section className="py-20 bg-vikasa-gold-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white">What Our Clients Say</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-vikasa-espresso">What Our Clients Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <div key={index} className="bg-white p-8 rounded-lg shadow-lg">
@@ -293,7 +293,7 @@ export default function Home() {
       </section>
 
       {/* 6. Latest Resources */}
-      <section className="bg-gray-50 py-20">
+      <section className="bg-vikasa-espresso-50 py-20">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-vikasa-espresso">Latest Resources</h2>
@@ -308,7 +308,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {blogPosts.map((post, index) => (
               <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
-                <div className="h-48 bg-gray-300">
+                <div className="h-48 bg-vikasa-latte/30">
                   {/* Blog post image would go here */}
                   {/* <Image src={post.image} alt={post.title} width={400} height={250} className="w-full h-full object-cover" /> */}
                 </div>
@@ -335,7 +335,7 @@ export default function Home() {
                   <input 
                     type="email" 
                     placeholder="Your email address" 
-                    className="flex-grow px-5 py-3 rounded-md text-gray-900 focus:outline-none bg-white"
+                    className="flex-grow px-5 py-3 rounded-md text-stone-50 focus:outline-none border border-gray-200"
                   />
                   <button type="submit" className="bg-vikasa-gold hover:bg-vikasa-latte text-vikasa-espresso px-6 py-3 rounded-md transition-colors font-semibold whitespace-nowrap">
                     Subscribe
@@ -348,7 +348,7 @@ export default function Home() {
       </section>
 
       {/* 7. Trust Signals */}
-      <section className="py-16 bg-vikasa-gold-light">
+      <section className="py-16 bg-vikasa-gold-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold mb-4 text-vikasa-espresso">Trusted By Industry Leaders</h2>
@@ -361,7 +361,7 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
               {clientLogos.map((client, index) => (
                 <div key={index} className="grayscale hover:grayscale-0 transition-all duration-300">
-                  <div className="h-20 w-40 bg-gray-50 flex items-center justify-center rounded shadow-sm border border-gray-100 hover:border-vikasa-gold hover:shadow-md transition-all duration-300">
+                  <div className="h-20 w-40 bg-white flex items-center justify-center rounded shadow-sm border border-gray-200 hover:border-vikasa-gold hover:shadow-md transition-all duration-300">
                     {/* Replace with actual logos when available */}
                     {/* <Image src={client.logo} alt={client.name} width={120} height={60} /> */}
                     <span className="text-gray-500 font-medium">{client.name}</span>
@@ -377,7 +377,7 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
               {awardsAndCertifications.map((item, index) => (
                 <div key={index} className="group">
-                  <div className="h-24 w-48 bg-gray-50 flex flex-col items-center justify-center rounded-lg shadow-sm border border-gray-100 hover:border-vikasa-gold hover:shadow-md transition-all duration-300 p-4">
+                  <div className="h-24 w-48 bg-white flex flex-col items-center justify-center rounded-lg shadow-sm border border-gray-200 hover:border-vikasa-gold hover:shadow-md transition-all duration-300 p-4">
                     {/* Replace with actual logos when available */}
                     {/* <Image src={item.logo} alt={item.name} width={60} height={60} className="mb-2" /> */}
                     <div className="w-12 h-12 rounded-full bg-vikasa-gold/20 flex items-center justify-center mb-2">
@@ -394,7 +394,7 @@ export default function Home() {
           
           {/* Trust indicators */}
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gray-50 p-6 rounded-lg border border-gray-100 flex flex-col items-center text-center">
+            <div className="bg-white p-6 rounded-lg border border-gray-200 flex flex-col items-center text-center">
               <div className="w-14 h-14 rounded-full bg-vikasa-gold/20 flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -404,7 +404,7 @@ export default function Home() {
               <p className="text-gray-600">Enterprise-grade security protocols and compliance with industry standards</p>
             </div>
             
-            <div className="bg-gray-50 p-6 rounded-lg border border-gray-100 flex flex-col items-center text-center">
+            <div className="bg-white p-6 rounded-lg border border-gray-200 flex flex-col items-center text-center">
               <div className="w-14 h-14 rounded-full bg-vikasa-gold/20 flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -414,7 +414,7 @@ export default function Home() {
               <p className="text-gray-600">Our commitment to excellence and client satisfaction guarantee</p>
             </div>
             
-            <div className="bg-gray-50 p-6 rounded-lg border border-gray-100 flex flex-col items-center text-center">
+            <div className="bg-white p-6 rounded-lg border border-gray-200 flex flex-col items-center text-center">
               <div className="w-14 h-14 rounded-full bg-vikasa-gold/20 flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
