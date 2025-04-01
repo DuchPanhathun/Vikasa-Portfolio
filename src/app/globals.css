@@ -3,6 +3,11 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Vikasa custom colors */
+  --vikasa-espresso: #5E3023;
+  --vikasa-latte: #895637;
+  --vikasa-gold: #BD9655;
 }
 
 @theme inline {
@@ -23,4 +28,37 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Vikasa custom color classes */
+.bg-vikasa-espresso {
+  background-color: var(--vikasa-espresso);
+}
+.bg-vikasa-latte {
+  background-color: var(--vikasa-latte);
+}
+.bg-vikasa-gold {
+  background-color: var(--vikasa-gold);
+}
+.text-vikasa-espresso {
+  color: var(--vikasa-espresso);
+}
+.text-vikasa-latte {
+  color: var(--vikasa-latte);
+}
+.text-vikasa-gold {
+  color: var(--vikasa-gold);
+}
+
+/* Opacity variants */
+.bg-vikasa-gold\/20 {
+  background-color: rgba(189, 150, 85, 0.2);
+}
+.bg-vikasa-latte\/30 {
+  background-color: rgba(137, 86, 55, 0.3);
+}
+
+/* Gradient */
+.bg-gradient-to-r.from-vikasa-espresso.to-vikasa-latte {
+  background-image: linear-gradient(to right, var(--vikasa-espresso), var(--vikasa-latte));
 }
