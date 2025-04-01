@@ -191,3 +191,58 @@ body {
 .border-vikasa-latte-dark {
   border-color: var(--vikasa-latte-dark);
 }
+
+/* Hover text color classes */
+.hover\:text-vikasa-espresso:hover {
+  color: var(--vikasa-espresso);
+}
+.hover\:text-vikasa-latte:hover {
+  color: var(--vikasa-latte);
+}
+.hover\:text-vikasa-gold:hover {
+  color: var(--vikasa-gold);
+}
+
+/* Light variants hover */
+.hover\:text-vikasa-espresso-light:hover {
+  color: var(--vikasa-espresso-light);
+}
+.hover\:text-vikasa-latte-light:hover {
+  color: var(--vikasa-latte-light);
+}
+.hover\:text-vikasa-gold-light:hover {
+  color: var(--vikasa-gold-light);
+}
+
+/* Dark variants hover */
+.hover\:text-vikasa-espresso-dark:hover {
+  color: var(--vikasa-espresso-dark);
+}
+.hover\:text-vikasa-latte-dark:hover {
+  color: var(--vikasa-latte-dark);
+}
+.hover\:text-vikasa-gold-dark:hover {
+  color: var(--vikasa-gold-dark);
+}
+
+/* Extra light variants hover */
+.hover\:text-vikasa-espresso-50:hover {
+  color: var(--vikasa-espresso-50);
+}
+.hover\:text-vikasa-latte-50:hover {
+  color: var(--vikasa-latte-50);
+}
+.hover\:text-vikasa-gold-50:hover {
+  color: var(--vikasa-gold-50);
+}
+
+/* Light variants hover */
+.hover\:text-vikasa-espresso-100:hover {
+  color: var(--vikasa-espresso-100);
+}
+.hover\:text-vikasa-latte-100:hover {
+  color: var(--vikasa-latte-100);
+}
+.hover\:text-vikasa-gold-100:hover {
+  color: var(--vikasa-gold-100);
+}
