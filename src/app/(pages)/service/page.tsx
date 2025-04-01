@@ -32,7 +32,7 @@ export default function Services() {
                 onClick={() => setActiveTab('advisory')}
                 className={`px-6 py-3 rounded-full text-sm font-medium transition-colors ${
                   activeTab === 'advisory' 
-                    ? 'bg-vikasa-latte text-white' 
+                    ? 'bg-vikasa-espresso text-white' 
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
@@ -42,7 +42,7 @@ export default function Services() {
                 onClick={() => setActiveTab('academy')}
                 className={`px-6 py-3 rounded-full text-sm font-medium transition-colors ${
                   activeTab === 'academy' 
-                    ? 'bg-vikasa-gold text-vikasa-espresso' 
+                    ? 'bg-vikasa-espresso text-white' 
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
@@ -53,39 +53,39 @@ export default function Services() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="bg-vikasa-espresso/5 p-8 rounded-xl border border-vikasa-espresso/10">
+              <div className="bg-vikasa-espresso/5 p-8 rounded-xl border border-vikasa-espresso">
                 <div className="w-16 h-16 bg-vikasa-espresso/10 rounded-full flex items-center justify-center mb-6">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-espresso" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 </div>
                 <h2 className="text-2xl font-bold mb-4 text-vikasa-espresso">Advisory Services</h2>
-                <p className="text-gray-600 mb-6">
+                <p className="text-black mb-6">
                   Expert guidance to optimize your business strategy, streamline operations, and accelerate growth. Our advisors bring decades of experience to help you navigate complex challenges.
                 </p>
                 <ul className="space-y-2 mb-6">
                   <li className="flex items-start">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-vikasa-gold mr-2 mt-1" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-vikasa-latte mr-2 mt-1" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span>Tailored strategic solutions</span>
+                    <span className="text-black">Tailored strategic solutions</span>
                   </li>
                   <li className="flex items-start">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-vikasa-gold mr-2 mt-1" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-vikasa-latte mr-2 mt-1" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span>Expert industry insights</span>
+                    <span className="text-black">Expert industry insights</span>
                   </li>
                   <li className="flex items-start">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-vikasa-gold mr-2 mt-1" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-vikasa-latte mr-2 mt-1" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span>Measurable business outcomes</span>
+                    <span className="text-black">Measurable business outcomes</span>
                   </li>
                 </ul>
                 <button
                   onClick={() => setActiveTab('advisory')}
-                  className="text-vikasa-espresso hover:text-vikasa-latte font-medium inline-flex items-center transition-colors"
+                  className="text-vikasa-latte hover:text-vikasa-latte font-medium inline-flex items-center transition-colors"
                 >
                   Explore Advisory Services
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
@@ -96,39 +96,39 @@ export default function Services() {
             </div>
             
             <div>
-              <div className="bg-vikasa-gold/5 p-8 rounded-xl border border-vikasa-gold/10">
+              <div className="bg-vikasa-gold/5 p-8 rounded-xl border border-vikasa-gold">
                 <div className="w-16 h-16 bg-vikasa-gold/10 rounded-full flex items-center justify-center mb-6">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                   </svg>
                 </div>
                 <h2 className="text-2xl font-bold mb-4 text-vikasa-espresso">Academy Programs</h2>
-                <p className="text-gray-600 mb-6">
+                <p className="text-black mb-6">
                   Specialized training programs designed to elevate your team's skills and capabilities. Our academy offers practical, results-oriented learning experiences.
                 </p>
                 <ul className="space-y-2 mb-6">
                   <li className="flex items-start">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-vikasa-latte mr-2 mt-1" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-vikasa-gold mr-2 mt-1" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span>Industry-leading instructors</span>
+                    <span className="text-black">Industry-leading instructors</span>
                   </li>
                   <li className="flex items-start">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-vikasa-latte mr-2 mt-1" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-vikasa-gold mr-2 mt-1" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span>Practical, hands-on learning</span>
+                    <span className="text-black">Practical, hands-on learning</span>
                   </li>
                   <li className="flex items-start">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-vikasa-latte mr-2 mt-1" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-vikasa-gold mr-2 mt-1" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span>Recognized certifications</span>
+                    <span className="text-black">Recognized certifications</span>
                   </li>
                 </ul>
                 <button
                   onClick={() => setActiveTab('academy')}
-                  className="text-vikasa-espresso hover:text-vikasa-latte font-medium inline-flex items-center transition-colors"
+                  className="text-vikasa-latte hover:text-vikasa-latte font-medium inline-flex items-center transition-colors"
                 >
                   Explore Academy Programs
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
@@ -168,7 +168,7 @@ export default function Services() {
                       </svg>
                     </div>
                     <h4 className="text-xl font-bold mb-2 text-vikasa-espresso">Business Strategy Consulting</h4>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-black mb-4">
                       Develop a clear roadmap for sustainable growth and competitive advantage in your market.
                     </p>
                     
@@ -178,24 +178,24 @@ export default function Services() {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-vikasa-gold mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        <span>Clear strategic direction</span>
+                        <span className="text-black">Clear strategic direction</span>
                       </li>
                       <li className="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-vikasa-gold mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        <span>Competitive market positioning</span>
+                        <span className="text-black">Competitive market positioning</span>
                       </li>
                       <li className="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-vikasa-gold mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        <span>Measurable business objectives</span>
+                        <span className="text-black">Measurable business objectives</span>
                       </li>
                     </ul>
                     
                     <h5 className="text-sm font-bold text-vikasa-gold mb-2">EXAMPLE OUTCOME</h5>
-                    <p className="text-sm text-gray-600 italic mb-4">
+                    <p className="text-sm text-black italic mb-4">
                       "Achieved 35% revenue growth within 12 months through strategic market repositioning and customer segmentation."
                     </p>
                     
@@ -218,7 +218,7 @@ export default function Services() {
                       </svg>
                     </div>
                     <h4 className="text-xl font-bold mb-2 text-vikasa-espresso">Process Optimization</h4>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-black mb-4">
                       Streamline operations, eliminate inefficiencies, and implement best practices across your organization.
                     </p>
                     
@@ -228,24 +228,24 @@ export default function Services() {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-vikasa-gold mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        <span>Increased operational efficiency</span>
+                        <span className="text-black">Increased operational efficiency</span>
                       </li>
                       <li className="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-vikasa-gold mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        <span>Reduced operational costs</span>
+                        <span className="text-black">Reduced operational costs</span>
                       </li>
                       <li className="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-vikasa-gold mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        <span>Improved quality and consistency</span>
+                        <span className="text-black">Improved quality and consistency</span>
                       </li>
                     </ul>
                     
                     <h5 className="text-sm font-bold text-vikasa-gold mb-2">EXAMPLE OUTCOME</h5>
-                    <p className="text-sm text-gray-600 italic mb-4">
+                    <p className="text-sm text-black italic mb-4">
                       "Reduced processing time by 42% and operational costs by 28% through workflow optimization and automation."
                     </p>
                     
@@ -268,7 +268,7 @@ export default function Services() {
                       </svg>
                     </div>
                     <h4 className="text-xl font-bold mb-2 text-vikasa-espresso">Digital Transformation</h4>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-black mb-4">
                       Leverage technology to reimagine your business model, customer experience, and operational processes.
                     </p>
                     
@@ -278,19 +278,19 @@ export default function Services() {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-vikasa-gold mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        <span>Enhanced digital capabilities</span>
+                        <span className="text-black">Enhanced digital capabilities</span>
                       </li>
                       <li className="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-vikasa-gold mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        <span>Improved customer experiences</span>
+                        <span className="text-black">Improved customer experiences</span>
                       </li>
                       <li className="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-vikasa-gold mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        <span>Data-driven decision making</span>
+                        <span className="text-black">Data-driven decision making</span>
                       </li>
                     </ul>
                     

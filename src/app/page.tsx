@@ -3,10 +3,20 @@ import Image from "next/image";
 
 // Example client logos - replace with actual images
 const clientLogos = [
-  { name: "Client 1", logo: "/client1.svg" },
-  { name: "Client 2", logo: "/client2.svg" },
-  { name: "Client 3", logo: "/client3.svg" },
-  { name: "Client 4", logo: "/client4.svg" },
+  { name: "Microsoft", logo: "/logos/microsoft.svg", type: "client" },
+  { name: "Google", logo: "/logos/google.svg", type: "client" },
+  { name: "Amazon", logo: "/logos/amazon.svg", type: "client" },
+  { name: "IBM", logo: "/logos/ibm.svg", type: "client" },
+  { name: "Salesforce", logo: "/logos/salesforce.svg", type: "client" },
+  { name: "Oracle", logo: "/logos/oracle.svg", type: "client" },
+];
+
+// Add awards and certifications
+const awardsAndCertifications = [
+  { name: "Forbes Top Consultants", logo: "/logos/forbes.svg", type: "award" },
+  { name: "ISO 9001 Certified", logo: "/logos/iso.svg", type: "certification" },
+  { name: "PMP Certified Consultants", logo: "/logos/pmp.svg", type: "certification" },
+  { name: "SHRM Certified", logo: "/logos/shrm.svg", type: "certification" },
 ];
 
 // Example testimonials - replace with actual testimonials
@@ -325,7 +335,7 @@ export default function Home() {
                   <input 
                     type="email" 
                     placeholder="Your email address" 
-                    className="flex-grow px-5 py-3 rounded-md text-gray-900 focus:outline-none"
+                    className="flex-grow px-5 py-3 rounded-md text-gray-900 focus:outline-none bg-white"
                   />
                   <button type="submit" className="bg-vikasa-gold hover:bg-vikasa-latte text-vikasa-espresso px-6 py-3 rounded-md transition-colors font-semibold whitespace-nowrap">
                     Subscribe
@@ -338,28 +348,80 @@ export default function Home() {
       </section>
 
       {/* 7. Trust Signals */}
-      <section className="py-16 border-t border-b border-gray-200 bg-vikasa-espresso">
+      <section className="py-16 bg-vikasa-gold-light">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-center mb-12 text-white">Trusted By Industry Leaders</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
-            {clientLogos.map((client, index) => (
-              <div key={index} className="grayscale hover:grayscale-0 transition-all">
-                {/* Client logo would go here */}
-                <div className="h-16 w-32 bg-gray-200 flex items-center justify-center rounded">
-                  {/* <Image src={client.logo} alt={client.name} width={120} height={60} /> */}
-                  <span className="text-gray-400">{client.name}</span>
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4 text-vikasa-espresso">Trusted By Industry Leaders</h2>
+            <p className="text-lg text-gray-600">Join the ranks of elite organizations that rely on our expertise</p>
+          </div>
+          
+          {/* Client logos */}
+          <div className="mb-12">
+            <h3 className="text-xl font-semibold mb-8 text-center text-vikasa-latte">Our Clients</h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
+              {clientLogos.map((client, index) => (
+                <div key={index} className="grayscale hover:grayscale-0 transition-all duration-300">
+                  <div className="h-20 w-40 bg-gray-50 flex items-center justify-center rounded shadow-sm border border-gray-100 hover:border-vikasa-gold hover:shadow-md transition-all duration-300">
+                    {/* Replace with actual logos when available */}
+                    {/* <Image src={client.logo} alt={client.name} width={120} height={60} /> */}
+                    <span className="text-gray-500 font-medium">{client.name}</span>
+                  </div>
                 </div>
-              </div>
-            ))}
-            <div className="grayscale hover:grayscale-0 transition-all">
-              <div className="h-16 w-32 bg-gray-200 flex items-center justify-center rounded">
-                <span className="text-gray-400">Award 1</span>
-              </div>
+              ))}
             </div>
-            <div className="grayscale hover:grayscale-0 transition-all">
-              <div className="h-16 w-32 bg-gray-200 flex items-center justify-center rounded">
-                <span className="text-gray-400">Certification</span>
+          </div>
+          
+          {/* Awards and certifications */}
+          <div>
+            <h3 className="text-xl font-semibold mb-8 text-center text-vikasa-latte">Awards & Certifications</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
+              {awardsAndCertifications.map((item, index) => (
+                <div key={index} className="group">
+                  <div className="h-24 w-48 bg-gray-50 flex flex-col items-center justify-center rounded-lg shadow-sm border border-gray-100 hover:border-vikasa-gold hover:shadow-md transition-all duration-300 p-4">
+                    {/* Replace with actual logos when available */}
+                    {/* <Image src={item.logo} alt={item.name} width={60} height={60} className="mb-2" /> */}
+                    <div className="w-12 h-12 rounded-full bg-vikasa-gold/20 flex items-center justify-center mb-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                      </svg>
+                    </div>
+                    <span className="text-gray-700 font-medium text-center text-sm">{item.name}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Trust indicators */}
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-gray-50 p-6 rounded-lg border border-gray-100 flex flex-col items-center text-center">
+              <div className="w-14 h-14 rounded-full bg-vikasa-gold/20 flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
               </div>
+              <h4 className="text-lg font-bold mb-2 text-vikasa-espresso">Data Security</h4>
+              <p className="text-gray-600">Enterprise-grade security protocols and compliance with industry standards</p>
+            </div>
+            
+            <div className="bg-gray-50 p-6 rounded-lg border border-gray-100 flex flex-col items-center text-center">
+              <div className="w-14 h-14 rounded-full bg-vikasa-gold/20 flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h4 className="text-lg font-bold mb-2 text-vikasa-espresso">100% Satisfaction</h4>
+              <p className="text-gray-600">Our commitment to excellence and client satisfaction guarantee</p>
+            </div>
+            
+            <div className="bg-gray-50 p-6 rounded-lg border border-gray-100 flex flex-col items-center text-center">
+              <div className="w-14 h-14 rounded-full bg-vikasa-gold/20 flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <h4 className="text-lg font-bold mb-2 text-vikasa-espresso">Expert Team</h4>
+              <p className="text-gray-600">Industry veterans with proven track records of success</p>
             </div>
           </div>
         </div>

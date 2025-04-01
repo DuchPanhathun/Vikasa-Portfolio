@@ -4,10 +4,30 @@
   --background: #ffffff;
   --foreground: #171717;
   
-  /* Vikasa custom colors */
+  /* Vikasa custom colors - Core */
   --vikasa-espresso: #5E3023;
   --vikasa-latte: #895637;
   --vikasa-gold: #BD9655;
+  
+  /* Light variants */
+  --vikasa-espresso-light: #8A5A4A;
+  --vikasa-latte-light: #B48765;
+  --vikasa-gold-light: #D5B887;
+  
+  /* Dark variants */
+  --vikasa-espresso-dark: #3D1E15;
+  --vikasa-latte-dark: #5C3923;
+  --vikasa-gold-dark: #9D7B46;
+  
+  /* Extra light variants */
+  --vikasa-espresso-50: #F5F0EE;
+  --vikasa-latte-50: #F7F3F0;
+  --vikasa-gold-50: #FAF7F1;
+  
+  /* Light variants */
+  --vikasa-espresso-100: #E5D5D0;
+  --vikasa-latte-100: #EBE0D8;
+  --vikasa-gold-100: #F2EBD9;
 }
 
 @theme inline {
@@ -30,7 +50,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Vikasa custom color classes */
+/* Vikasa custom color classes - Core */
 .bg-vikasa-espresso {
   background-color: var(--vikasa-espresso);
 }
@@ -50,6 +70,86 @@ body {
   color: var(--vikasa-gold);
 }
 
+/* Light variants */
+.bg-vikasa-espresso-light {
+  background-color: var(--vikasa-espresso-light);
+}
+.bg-vikasa-latte-light {
+  background-color: var(--vikasa-latte-light);
+}
+.bg-vikasa-gold-light {
+  background-color: var(--vikasa-gold-light);
+}
+.text-vikasa-espresso-light {
+  color: var(--vikasa-espresso-light);
+}
+.text-vikasa-latte-light {
+  color: var(--vikasa-latte-light);
+}
+.text-vikasa-gold-light {
+  color: var(--vikasa-gold-light);
+}
+
+/* Dark variants */
+.bg-vikasa-espresso-dark {
+  background-color: var(--vikasa-espresso-dark);
+}
+.bg-vikasa-latte-dark {
+  background-color: var(--vikasa-latte-dark);
+}
+.bg-vikasa-gold-dark {
+  background-color: var(--vikasa-gold-dark);
+}
+.text-vikasa-espresso-dark {
+  color: var(--vikasa-espresso-dark);
+}
+.text-vikasa-latte-dark {
+  color: var(--vikasa-latte-dark);
+}
+.text-vikasa-gold-dark {
+  color: var(--vikasa-gold-dark);
+}
+
+/* Extra light variants */
+.bg-vikasa-espresso-50 {
+  background-color: var(--vikasa-espresso-50);
+}
+.bg-vikasa-latte-50 {
+  background-color: var(--vikasa-latte-50);
+}
+.bg-vikasa-gold-50 {
+  background-color: var(--vikasa-gold-50);
+}
+.text-vikasa-espresso-50 {
+  color: var(--vikasa-espresso-50);
+}
+.text-vikasa-latte-50 {
+  color: var(--vikasa-latte-50);
+}
+.text-vikasa-gold-50 {
+  color: var(--vikasa-gold-50);
+}
+
+/* Light variants */
+.bg-vikasa-espresso-100 {
+  background-color: var(--vikasa-espresso-100);
+}
+.bg-vikasa-latte-100 {
+  background-color: var(--vikasa-latte-100);
+}
+.bg-vikasa-gold-100 {
+  background-color: var(--vikasa-gold-100);
+}
+.text-vikasa-espresso-100 {
+  color: var(--vikasa-espresso-100);
+}
+.text-vikasa-latte-100 {
+  color: var(--vikasa-latte-100);
+}
+.text-vikasa-gold-100 {
+  color: var(--vikasa-gold-100);
+}
+
 /* Opacity variants */
 .bg-vikasa-gold\/20 {
   background-color: rgba(189, 150, 85, 0.2);
@@ -61,4 +161,33 @@ body {
 /* Gradient */
 .bg-gradient-to-r.from-vikasa-espresso.to-vikasa-latte {
   background-image: linear-gradient(to right, var(--vikasa-espresso), var(--vikasa-latte));
+}
+
+.border-vikasa-gold {
+  border-color: var(--vikasa-gold);
+}
+.border-vikasa-espresso {
+  border-color: var(--vikasa-espresso);
+}
+.border-vikasa-latte {
+  border-color: var(--vikasa-latte);
+}
+
+.border-vikasa-gold-light {
+  border-color: var(--vikasa-gold-light);
+}
+.border-vikasa-gold-dark {
+  border-color: var(--vikasa-gold-dark);
+}
+.border-vikasa-espresso-light {
+  border-color: var(--vikasa-espresso-light);
+}
+.border-vikasa-latte-light {
+  border-color: var(--vikasa-latte-light);
+}
+.border-vikasa-espresso-dark {
+  border-color: var(--vikasa-espresso-dark);
+}
+.border-vikasa-latte-dark {
+  border-color: var(--vikasa-latte-dark);
 }
