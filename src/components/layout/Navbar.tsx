@@ -191,17 +191,31 @@ export default function Navbar() {
             </div>
           </Link>
           <Link 
-            href="/projects" 
+            href="/service" 
             className={`block px-3 py-3 rounded-md text-base font-medium transition-all duration-200 ${
-              isActive('/projects') 
+              isActive('/service') 
                 ? 'bg-gradient-to-r from-vikasa-gold/20 to-transparent text-vikasa-espresso border-l-4 border-vikasa-gold' 
                 : 'text-vikasa-espresso hover:text-vikasa-latte hover:bg-vikasa-gold/5 border-l-4 border-transparent'
             }`}
             onClick={() => setIsMenuOpen(false)}
           >
             <div className="flex items-center">
-              <span className={`mr-2 h-1.5 w-1.5 rounded-full ${isActive('/projects') ? 'bg-vikasa-gold' : 'bg-transparent'}`}></span>
-              Projects
+              <span className={`mr-2 h-1.5 w-1.5 rounded-full ${isActive('/service') ? 'bg-vikasa-gold' : 'bg-transparent'}`}></span>
+              Services
+            </div>
+          </Link>
+          <Link 
+            href="/resource" 
+            className={`block px-3 py-3 rounded-md text-base font-medium transition-all duration-200 ${
+              isActive('/resource') 
+                ? 'bg-gradient-to-r from-vikasa-gold/20 to-transparent text-vikasa-espresso border-l-4 border-vikasa-gold' 
+                : 'text-vikasa-espresso hover:text-vikasa-latte hover:bg-vikasa-gold/5 border-l-4 border-transparent'
+            }`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <div className="flex items-center">
+              <span className={`mr-2 h-1.5 w-1.5 rounded-full ${isActive('/resource') ? 'bg-vikasa-gold' : 'bg-transparent'}`}></span>
+              Resources
             </div>
           </Link>
           <Link 
