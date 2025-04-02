@@ -7,7 +7,7 @@ export default function Services() {
   const [activeTab, setActiveTab] = useState('all'); // 'all', 'advisory', 'academy'
   
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 font-montserrat">
       {/* 1. Hero Section with Overview */}
       <section className="bg-vikasa-espresso-50 py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-8">

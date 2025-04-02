@@ -399,7 +399,7 @@ const forumDiscussions = [
 
 export default function Resources() {
   return (
-    <main className="font-[family-name:var(--font-geist-sans)]">
+    <main className="font-montserrat">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-vikasa-espresso to-vikasa-latte py-20">
         <div className="container mx-auto px-4">

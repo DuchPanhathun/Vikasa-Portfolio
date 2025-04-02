@@ -126,7 +126,7 @@ export default function Footer() {
               />
               <button
                 type="submit"
-                className="whitespace-nowrap bg-vikasa-espresso text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-vikasa-latte transition-colors"
+                className="whitespace-nowrap bg-vikasa-gold text-vikasa-espresso px-4 py-2 rounded-md text-sm font-medium hover:bg-vikasa-latte transition-colors"
               >
                 Subscribe
               </button>

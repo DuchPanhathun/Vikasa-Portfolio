@@ -35,6 +35,9 @@ export default {
           'gold-100': '#F2EBD9'
         }
       },
+      fontFamily: {
+        montserrat: ['var(--font-montserrat)', 'sans-serif'],
+      },
     },
   },
   plugins: [],

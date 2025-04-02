@@ -212,7 +212,7 @@ const faqs = [
 
 export default function About() {
   return (
-    <main className="font-[family-name:var(--font-geist-sans)]">
+    <main className="font-montserrat">
       {/* Hero Section */}
       <section className="relative bg-vikasa-espresso-50 py-20">
         <div className="container mx-auto px-4">
@@ -560,21 +560,21 @@ export default function About() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div className="relative h-64 bg-vikasa-latte-50 rounded-lg overflow-hidden">
+            <div className="relative h-64 bg-vikasa-latte-100 rounded-lg overflow-hidden">
               {/* Replace with actual image */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <p className="text-vikasa-latte text-lg font-medium">Team Collaboration</p>
               </div>
               {/* <Image src="/images/about/culture-1.jpg" alt="Team Collaboration" fill style={{objectFit: "cover"}} /> */}
             </div>
-            <div className="relative h-64 bg-vikasa-latte-50 rounded-lg overflow-hidden">
+            <div className="relative h-64 bg-vikasa-latte-100 rounded-lg overflow-hidden">
               {/* Replace with actual image */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <p className="text-vikasa-latte text-lg font-medium">Office Environment</p>
               </div>
               {/* <Image src="/images/about/culture-2.jpg" alt="Office Environment" fill style={{objectFit: "cover"}} /> */}
             </div>
-            <div className="relative h-64 bg-vikasa-latte-50 rounded-lg overflow-hidden">
+            <div className="relative h-64 bg-vikasa-latte-100 rounded-lg overflow-hidden">
               {/* Replace with actual image */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <p className="text-vikasa-latte text-lg font-medium">Team Building</p>

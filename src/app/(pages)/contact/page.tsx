@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function Contact() {
   return (
-    <main className="font-[family-name:var(--font-geist-sans)]">
+    <main className="font-montserrat">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-vikasa-espresso to-vikasa-latte py-20">
         <div className="container mx-auto px-4">
@@ -193,55 +193,17 @@ export default function Contact() {
                     +1 (212) 555-6789
                   </div>
                 </div>
-
-                {/* San Francisco Office */}
-                <div className="bg-white rounded-lg shadow-md p-6">
-                  <h3 className="text-xl font-bold text-vikasa-espresso mb-1">San Francisco</h3>
-                  <p className="text-gray-600 mb-4">
-                    560 Mission Street, Suite 2800<br />
-                    San Francisco, CA 94105<br />
-                    United States
-                  </p>
-                  <div className="flex items-center text-sm text-vikasa-espresso">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                    +1 (415) 555-1234
-                  </div>
-                </div>
-
-                {/* London Office */}
-                <div className="bg-white rounded-lg shadow-md p-6">
-                  <h3 className="text-xl font-bold text-vikasa-espresso mb-1">London</h3>
-                  <p className="text-gray-600 mb-4">
-                    30 St Mary Axe<br />
-                    London EC3A 8BF<br />
-                    United Kingdom
-                  </p>
-                  <div className="flex items-center text-sm text-vikasa-espresso">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                    +44 20 7123 4567
-                  </div>
-                </div>
-
-                {/* Singapore Office */}
-                <div className="bg-white rounded-lg shadow-md p-6">
-                  <h3 className="text-xl font-bold text-vikasa-espresso mb-1">Singapore</h3>
-                  <p className="text-gray-600 mb-4">
-                    One Raffles Quay, North Tower<br />
-                    Singapore 048583<br />
-                    Singapore
-                  </p>
-                  <div className="flex items-center text-sm text-vikasa-espresso">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                    +65 6222 3456
-                  </div>
-                </div>
-              </div>
+              </div><div className="rounded-lg overflow-hidden shadow-md w-full h-[450px] mt-4">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6877.6872679805365!2d104.93860407977118!3d11.548182039639055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109576732b0b647%3A0xbb822fdbef903f43!2sThe%20Elys%C3%A9e!5e0!3m2!1sen!2skh!4v1743595562738!5m2!1sen!2skh" 
+                width="100%" 
+                height="450" 
+                style={{border:0}} 
+                allowFullScreen={true} 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
             </div>
           </div>
         </div>
@@ -304,13 +266,6 @@ export default function Contact() {
           >
             Schedule a Consultation
           </Link>
-        </div>
-      </section>
-
-      {/* Map Section - This would typically integrate with Google Maps or similar */}
-      <section className="bg-white">
-        <div className="h-96 bg-vikasa-espresso-50 w-full flex items-center justify-center">
-          <p className="text-vikasa-espresso text-lg font-medium">Interactive Map Would Be Embedded Here</p>
         </div>
       </section>
     </main>

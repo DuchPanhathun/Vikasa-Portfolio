@@ -73,7 +73,7 @@ const blogPosts = [
 
 export default function Home() {
   return (
-    <div className="font-[family-name:var(--font-geist-sans)]">
+    <div className="font-montserrat">
       {/* 1. Hero Section */}
       <section className="relative h-[80vh] flex items-center justify-center bg-gradient-to-r from-vikasa-espresso to-vikasa-latte text-white">
         <div className="absolute inset-0 opacity-20">
