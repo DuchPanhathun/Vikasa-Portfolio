@@ -103,7 +103,7 @@ export default function Services() {
                 </div>
                 <h2 className="text-2xl font-bold mb-4 text-vikasa-espresso">Academy Programs</h2>
                 <p className="text-black mb-6">
-                  Specialized training programs designed to elevate your team's skills and capabilities. Our academy offers practical, results-oriented learning experiences.
+                  Specialized training programs designed to elevate your team&apos;s skills and capabilities. Our academy offers practical, results-oriented learning experiences.
                 </p>
                 <ul className="space-y-2 mb-6">
                   <li className="flex items-start">
@@ -195,7 +195,7 @@ export default function Services() {
                     
                     <h5 className="text-sm font-bold text-vikasa-gold mb-2">EXAMPLE OUTCOME</h5>
                     <p className="text-sm text-black italic mb-4">
-                      "Achieved 35% revenue growth within 12 months through strategic market repositioning and customer segmentation."
+                      &quot;Achieved 35% revenue growth within 12 months through strategic market repositioning and customer segmentation.&quot;
                     </p>
                     
                     <Link href="/contact" className="text-vikasa-espresso hover:text-vikasa-latte font-medium text-sm inline-flex items-center transition-colors">
@@ -245,7 +245,7 @@ export default function Services() {
                     
                     <h5 className="text-sm font-bold text-vikasa-gold mb-2">EXAMPLE OUTCOME</h5>
                     <p className="text-sm text-black italic mb-4">
-                      "Reduced processing time by 42% and operational costs by 28% through workflow optimization and automation."
+                      &quot;Reduced processing time by 42% and operational costs by 28% through workflow optimization and automation.&quot;
                     </p>
                     
                     <Link href="/contact" className="text-vikasa-espresso hover:text-vikasa-latte font-medium text-sm inline-flex items-center transition-colors">
@@ -295,7 +295,7 @@ export default function Services() {
                     
                     <h5 className="text-sm font-bold text-vikasa-gold mb-2">EXAMPLE OUTCOME</h5>
                     <p className="text-sm text-gray-600 italic mb-4">
-                      "Increased digital sales by 156% and customer satisfaction by 48% through implementation of new digital channels and systems."
+                      &quot;Increased digital sales by 156% and customer satisfaction by 48% through implementation of new digital channels and systems.&quot;
                     </p>
                     
                     <Link href="/contact" className="text-vikasa-espresso hover:text-vikasa-latte font-medium text-sm inline-flex items-center transition-colors">

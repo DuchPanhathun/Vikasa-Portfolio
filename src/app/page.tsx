@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 // Example client logos - replace with actual images
 const clientLogos = [
@@ -86,7 +85,7 @@ export default function Home() {
             Transforming Businesses Through Expert Guidance
           </h1>
           <p className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto">
-            Comprehensive advisory services and specialized training programs to elevate your organization's performance.
+            Comprehensive advisory services and specialized training programs to elevate your organization&apos;s performance.
           </p>
           <div className="flex gap-4 justify-center">
             <Link href="/contact" className="bg-vikasa-gold hover:bg-vikasa-latte text-vikasa-espresso font-semibold px-8 py-3 rounded-md transition-colors text-lg">

@@ -270,7 +270,7 @@ export default function Contact() {
             <div className="bg-vikasa-espresso-100 rounded-lg p-6">
               <h3 className="text-xl font-bold text-vikasa-espresso mb-3">Can Vikasa provide references from past clients?</h3>
               <p className="text-gray-700">
-                Yes, we're happy to provide references from past clients who have worked on similar projects or faced comparable challenges. After our initial discussions to understand your specific needs, we can connect you with relevant client references upon request.
+                Yes, we&apos;re happy to provide references from past clients who have worked on similar projects or faced comparable challenges. After our initial discussions to understand your specific needs, we can connect you with relevant client references upon request.
               </p>
             </div>
             
@@ -304,6 +304,13 @@ export default function Contact() {
           >
             Schedule a Consultation
           </Link>
+        </div>
+      </section>
+
+      {/* Map Section - This would typically integrate with Google Maps or similar */}
+      <section className="bg-white">
+        <div className="h-96 bg-vikasa-espresso-50 w-full flex items-center justify-center">
+          <p className="text-vikasa-espresso text-lg font-medium">Interactive Map Would Be Embedded Here</p>
         </div>
       </section>
     </main>

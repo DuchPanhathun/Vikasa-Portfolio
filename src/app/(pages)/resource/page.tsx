@@ -406,7 +406,7 @@ export default function Resources() {
           <div className="max-w-3xl mx-auto text-center text-white">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Resource Center</h1>
             <p className="text-xl mb-10">
-              Insights, tools and expertise to help your organization thrive in today's complex business environment.
+              Insights, tools and expertise to help your organization thrive in today&apos;s complex business environment.
             </p>
             
             {/* Search Bar */}
