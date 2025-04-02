@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 // Blog articles data
 const featuredArticles = [
