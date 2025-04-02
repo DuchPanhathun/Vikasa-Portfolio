@@ -413,8 +413,8 @@ export default function Resources() {
             <div className="relative max-w-2xl mx-auto">
               <input 
                 type="text" 
-                placeholder="Search for resources..." 
-                className="w-full py-4 px-6 rounded-full text-gray-800 bg-white shadow-lg focus:outline-none focus:ring-2 focus:ring-vikasa-gold"
+                placeholder="Search for resources by keyword" 
+                className="w-full py-4 px-6 rounded-full text-gray-800 bg-white shadow-lg focus:outline-none focus:ring-2 focus:ring-vikasa-gold placeholder-gray-400 placeholder-opacity-75 focus:placeholder-vikasa-latte"
               />
               <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-vikasa-gold hover:bg-vikasa-gold-dark text-white p-2 rounded-full transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -886,23 +886,23 @@ export default function Resources() {
                 <div className="flex flex-col md:flex-row gap-4">
                   <div className="flex-grow relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                       </svg>
                     </div>
                     <input 
                       type="text" 
                       placeholder="Search for resources by keyword" 
-                      className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-vikasa-gold focus:border-vikasa-gold"
+                      className="block w-full pl-10 pr-3 py-3 border border-white rounded-md shadow-sm focus:outline-none focus:ring-vikasa-gold focus:border-vikasa-gold text-gray-700 placeholder-gray-400 placeholder-opacity-75 focus:placeholder-vikasa-latte"
                     />
                   </div>
-                  <select className="py-3 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-vikasa-gold focus:border-vikasa-gold text-gray-700">
+                  <select className="py-3 px-4 border border-white rounded-md shadow-sm focus:outline-none focus:ring-vikasa-gold focus:border-vikasa-gold text-gray-700">
                     <option value="">All Resource Types</option>
                     {resourceTypes.map((type, idx) => (
                       <option key={idx} value={type.name.toLowerCase()}>{type.name}</option>
                     ))}
                   </select>
-                  <select className="py-3 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-vikasa-gold focus:border-vikasa-gold text-gray-700">
+                  <select className="py-3 px-4 border border-white rounded-md shadow-sm focus:outline-none focus:ring-vikasa-gold focus:border-vikasa-gold text-gray-700">
                     <option value="">All Topics</option>
                     {resourceTopics.map((topic, idx) => (
                       <option key={idx} value={topic.name.toLowerCase()}>{topic.name}</option>
@@ -1160,7 +1160,7 @@ export default function Resources() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/contact" 
-              className="bg-vikasa-gold hover:bg-vikasa-gold-dark text-white font-semibold px-8 py-3 rounded-md transition-colors"
+              className="bg-vikasa-gold hover:bg-vikasa-gold-dark text-vikasa-espresso font-semibold px-8 py-3 rounded-md transition-colors"
             >
               Contact Us
             </Link>
