@@ -1,43 +1,34 @@
-import Link from "next/link";
+"use client";
 
-// Company timeline data
-const timelineEvents = [
-  {
-    year: "2003",
-    title: "Foundation",
-    description: "Vikasa was founded with a vision to transform business consulting through holistic approaches."
-  },
-  {
-    year: "2007",
-    title: "International Expansion",
-    description: "Opened our first international office in Singapore, expanding our reach across Asia."
-  },
-  {
-    year: "2012",
-    title: "Vikasa Academy Launch",
-    description: "Launched our education division offering specialized executive training programs."
-  },
-  {
-    year: "2015",
-    title: "Digital Transformation Practice",
-    description: "Established our digital transformation practice to help businesses navigate technological change."
-  },
-  {
-    year: "2018",
-    title: "100th Enterprise Client",
-    description: "Milestone achievement of serving our 100th enterprise-level client."
-  },
-  {
-    year: "2020",
-    title: "Virtual Learning Platform",
-    description: "Launched our proprietary virtual learning platform for remote training excellence."
-  },
-  {
-    year: "2023",
-    title: "20 Years of Excellence",
-    description: "Celebrating two decades of transformative business consulting and leadership development."
+import Link from "next/link";
+import { motion } from "framer-motion";
+
+// Animation variants
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.8 } }
+};
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { 
+      staggerChildren: 0.2,
+      delayChildren: 0.3
+    }
   }
-];
+};
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
 
 // Core values data
 const coreValues = [
@@ -214,21 +205,38 @@ export default function About() {
   return (
     <main className="font-montserrat">
       {/* Hero Section */}
-      <section className="relative bg-vikasa-espresso-50 py-20">
+      <motion.section 
+        className="relative bg-vikasa-espresso-50 py-20"
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
+          <motion.div 
+            className="max-w-3xl mx-auto text-center"
+            variants={fadeInUp}
+          >
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-vikasa-espresso">Our Story</h1>
             <p className="text-xl text-gray-700 mb-8">Transforming businesses through expertise, innovation, and partnership since 2005.</p>
             <div className="w-32 h-1 bg-vikasa-gold mx-auto"></div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
       
       {/* 1. Company Story */}
-      <section className="py-16 bg-white">
+      <motion.section 
+        className="py-16 bg-white"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+          <motion.div 
+            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+            variants={staggerContainer}
+          >
+            <motion.div variants={staggerItem}>
               <h2 className="text-3xl font-bold mb-6 text-vikasa-espresso">Our Journey</h2>
               <p className="text-lg text-gray-700 mb-6">
                 Vikasa was born from a clear vision: to redefine business consulting by combining strategic insight with practical implementation. 
@@ -250,177 +258,128 @@ export default function About() {
                   Our Services
                 </Link>
               </div>
-            </div>
-            <div className="relative h-96 bg-vikasa-latte/30 rounded-lg overflow-hidden">
+            </motion.div>
+            <motion.div 
+              className="relative h-96 bg-vikasa-latte/30 rounded-lg overflow-hidden"
+              variants={staggerItem}
+            >
               {/* Replace with actual image */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <p className="text-vikasa-latte text-lg font-medium">Company Founding Team Image</p>
               </div>
               {/* <Image src="/images/about/founding-team.jpg" alt="Vikasa Founding Team" fill style={{objectFit: "cover"}} /> */}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
-      
-      {/* Timeline */}
-      <section className="py-16 bg-vikasa-espresso-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-16 text-vikasa-espresso">Our Growth Timeline</h2>
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-vikasa-gold-light"></div>
-            
-            <div className="space-y-16">
-              {timelineEvents.map((event, index) => (
-                <div key={index} className={`relative flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                  
-                  {/* Content */}
-                  <div className="w-5/12"></div>
-                  <div className="w-5/12 bg-white p-6 rounded-lg shadow-md">
-                    <span className="text-vikasa-gold font-bold text-xl">{event.year}</span>
-                    <h3 className="text-xl font-bold mb-2 text-vikasa-espresso">{event.title}</h3>
-                    <p className="text-gray-700">{event.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      </motion.section>
       
       {/* Vision for the future */}
-      <section className="py-16 bg-gradient-to-r from-vikasa-espresso to-vikasa-latte text-white">
+      <motion.section 
+        className="py-16 bg-gradient-to-r from-vikasa-espresso to-vikasa-latte text-white"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-8">Our Vision for the Future</h2>
-          <p className="text-xl max-w-3xl mx-auto mb-10">
-            We envision a business world where organizations thrive through authentic leadership, 
-            strategic innovation, and sustainable practices. Vikasa will continue to be at the 
-            forefront of this transformation, guiding leaders to create enduring value while 
-            developing their people and serving their communities.
-          </p>
-          <div className="w-24 h-1 bg-vikasa-gold mx-auto"></div>
+          <motion.div variants={fadeInUp}>
+            <h2 className="text-3xl font-bold mb-8">Our Vision for the Future</h2>
+            <p className="text-xl max-w-3xl mx-auto mb-10">
+              We envision a business world where organizations thrive through authentic leadership, 
+              strategic innovation, and sustainable practices. Vikasa will continue to be at the 
+              forefront of this transformation, guiding leaders to create enduring value while 
+              developing their people and serving their communities.
+            </p>
+            <div className="w-24 h-1 bg-vikasa-gold mx-auto"></div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
       
       {/* 2. Core Values & Philosophy */}
-      <section className="py-16 bg-white">
+      <motion.section 
+        className="py-16 bg-white"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
+          <motion.div 
+            className="max-w-3xl mx-auto text-center mb-16"
+            variants={fadeInUp}
+          >
             <h2 className="text-3xl font-bold mb-6 text-vikasa-espresso">Our Core Values</h2>
             <p className="text-lg text-gray-700">
               These principles guide every aspect of our work, from how we engage with clients 
               to how we develop our team members and measure our success.
             </p>
-          </div>
+          </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={staggerContainer}
+          >
             {coreValues.slice(0, 3).map((value, index) => (
-              <div key={index} className="bg-vikasa-espresso-50 p-8 rounded-lg">
+              <motion.div 
+                key={index} 
+                className="bg-vikasa-espresso-50 p-8 rounded-lg"
+                variants={staggerItem}
+              >
                 <div className="text-vikasa-gold mb-4">{value.icon}</div>
                 <h3 className="text-xl font-bold mb-3 text-vikasa-espresso">{value.title}</h3>
                 <p className="text-gray-700">{value.description}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8"
+            variants={staggerContainer}
+          >
             {coreValues.slice(3).map((value, index) => (
-              <div key={index} className="bg-vikasa-espresso-50 p-8 rounded-lg">
+              <motion.div 
+                key={index} 
+                className="bg-vikasa-espresso-50 p-8 rounded-lg"
+                variants={staggerItem}
+              >
                 <div className="text-vikasa-gold mb-4">{value.icon}</div>
                 <h3 className="text-xl font-bold mb-3 text-vikasa-espresso">{value.title}</h3>
                 <p className="text-gray-700">{value.description}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
-      
-      {/* Our Methodology */}
-      <section className="py-16 bg-vikasa-gold-50">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1">
-              <h2 className="text-3xl font-bold mb-6 text-vikasa-espresso">Our Methodology</h2>
-              <p className="text-lg text-gray-700 mb-6">
-                The Vikasa approach combines deep expertise with collaborative implementation, ensuring 
-                our solutions are both innovative and practical. We believe in:
-              </p>
-              
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <div className="bg-vikasa-gold/20 p-2 rounded-full mr-4 mt-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-vikasa-gold" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-vikasa-espresso mb-1">Deep Understanding</h3>
-                    <p className="text-gray-700">We begin by thoroughly understanding your unique challenges, context, and aspirations.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="bg-vikasa-gold/20 p-2 rounded-full mr-4 mt-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-vikasa-gold" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-vikasa-espresso mb-1">Collaborative Design</h3>
-                    <p className="text-gray-700">We co-create solutions with your team, ensuring alignment and ownership from the start.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="bg-vikasa-gold/20 p-2 rounded-full mr-4 mt-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-vikasa-gold" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-vikasa-espresso mb-1">Capability Building</h3>
-                    <p className="text-gray-700">We transfer knowledge and skills to your team, ensuring sustainable impact beyond our engagement.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="bg-vikasa-gold/20 p-2 rounded-full mr-4 mt-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-vikasa-gold" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-vikasa-espresso mb-1">Measurable Results</h3>
-                    <p className="text-gray-700">We define clear success metrics and rigorously track progress to ensure tangible outcomes.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="order-1 lg:order-2 relative h-96 bg-vikasa-latte/30 rounded-lg overflow-hidden">
-              {/* Replace with actual image */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-vikasa-latte text-lg font-medium">Methodology Image</p>
-              </div>
-              {/* <Image src="/images/about/methodology.jpg" alt="Vikasa Methodology" fill style={{objectFit: "cover"}} /> */}
-            </div>
-          </div>
-        </div>
-      </section>
+      </motion.section>
       
       {/* 3. Team Profiles */}
-      <section className="py-16 bg-white">
+      <motion.section 
+        className="py-16 bg-white"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
+          <motion.div 
+            className="max-w-3xl mx-auto text-center mb-16"
+            variants={fadeInUp}
+          >
             <h2 className="text-3xl font-bold mb-6 text-vikasa-espresso">Our Leadership Team</h2>
             <p className="text-lg text-gray-700">
               Meet the experienced professionals who guide our organization and bring their expertise to every client engagement.
             </p>
-          </div>
+          </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={staggerContainer}
+          >
             {teamMembers.map((member, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
+              <motion.div 
+                key={index} 
+                className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105"
+                variants={staggerItem}
+              >
                 <div className="h-64 bg-vikasa-latte-50 relative">
                   {/* Replace with actual image */}
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -444,25 +403,41 @@ export default function About() {
                     LinkedIn Profile
                   </a>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
       
       {/* 4. Company Credentials */}
-      <section className="py-16 bg-vikasa-espresso-50">
+      <motion.section 
+        className="py-16 bg-vikasa-espresso-50"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
+          <motion.div 
+            className="max-w-3xl mx-auto text-center mb-16"
+            variants={fadeInUp}
+          >
             <h2 className="text-3xl font-bold mb-6 text-vikasa-espresso">Our Credentials</h2>
             <p className="text-lg text-gray-700">
               Vikasa maintains the highest standards of professional excellence through industry certifications, partnerships, and recognitions.
             </p>
-          </div>
+          </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            variants={staggerContainer}
+          >
             {credentials.map((category, index) => (
-              <div key={index} className="bg-white p-8 rounded-lg shadow-md">
+              <motion.div 
+                key={index} 
+                className="bg-white p-8 rounded-lg shadow-md"
+                variants={staggerItem}
+              >
                 <h3 className="text-xl font-bold mb-6 text-vikasa-espresso border-b border-vikasa-gold pb-2">{category.category}</h3>
                 <ul className="space-y-3">
                   {category.items.map((item, idx) => (
@@ -476,34 +451,53 @@ export default function About() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
       
       {/* 5. Impact & Results */}
-      <section className="py-16 bg-white">
+      <motion.section 
+        className="py-16 bg-white"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
+          <motion.div 
+            className="max-w-3xl mx-auto text-center mb-16"
+            variants={fadeInUp}
+          >
             <h2 className="text-3xl font-bold mb-6 text-vikasa-espresso">Our Impact</h2>
             <p className="text-lg text-gray-700">
               We measure our success through the tangible results we deliver and the lasting difference we make for our clients.
             </p>
-          </div>
+          </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
+            variants={staggerContainer}
+          >
             {impactMetrics.map((metric, index) => (
-              <div key={index} className="bg-vikasa-espresso-50 p-8 rounded-lg text-center hover:shadow-lg transition-shadow">
+              <motion.div 
+                key={index} 
+                className="bg-vikasa-espresso-50 p-8 rounded-lg text-center hover:shadow-lg transition-shadow"
+                variants={staggerItem}
+              >
                 <div className="text-4xl font-bold text-vikasa-gold mb-2">{metric.number}</div>
                 <h3 className="text-xl font-bold text-vikasa-espresso mb-2">{metric.label}</h3>
                 <p className="text-gray-700">{metric.description}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
           
           {/* Social Impact */}
-          <div className="bg-vikasa-gold-light p-8 rounded-lg">
+          <motion.div 
+            className="bg-vikasa-gold-light p-8 rounded-lg"
+            variants={fadeInUp}
+          >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div>
                 <h3 className="text-2xl font-bold mb-4 text-vikasa-espresso">Social Impact Initiatives</h3>
@@ -545,45 +539,69 @@ export default function About() {
                 {/* <Image src="/images/about/social-impact.jpg" alt="Social Impact Initiatives" fill style={{objectFit: "cover"}} /> */}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
       
       {/* 6. Company Culture */}
-      <section className="py-16 bg-vikasa-espresso-50">
+      <motion.section 
+        className="py-16 bg-vikasa-espresso-50"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
+          <motion.div 
+            className="max-w-3xl mx-auto text-center mb-16"
+            variants={fadeInUp}
+          >
             <h2 className="text-3xl font-bold mb-6 text-vikasa-espresso">Our Culture</h2>
             <p className="text-lg text-gray-700">
               The Vikasa work environment is built on collaboration, continuous learning, and meaningful connection.
             </p>
-          </div>
+          </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div className="relative h-64 bg-vikasa-latte-100 rounded-lg overflow-hidden">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+            variants={staggerContainer}
+          >
+            <motion.div 
+              className="relative h-64 bg-vikasa-latte-100 rounded-lg overflow-hidden"
+              variants={staggerItem}
+            >
               {/* Replace with actual image */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <p className="text-vikasa-latte text-lg font-medium">Team Collaboration</p>
               </div>
               {/* <Image src="/images/about/culture-1.jpg" alt="Team Collaboration" fill style={{objectFit: "cover"}} /> */}
-            </div>
-            <div className="relative h-64 bg-vikasa-latte-100 rounded-lg overflow-hidden">
+            </motion.div>
+            <motion.div 
+              className="relative h-64 bg-vikasa-latte-100 rounded-lg overflow-hidden"
+              variants={staggerItem}
+            >
               {/* Replace with actual image */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <p className="text-vikasa-latte text-lg font-medium">Office Environment</p>
               </div>
               {/* <Image src="/images/about/culture-2.jpg" alt="Office Environment" fill style={{objectFit: "cover"}} /> */}
-            </div>
-            <div className="relative h-64 bg-vikasa-latte-100 rounded-lg overflow-hidden">
+            </motion.div>
+            <motion.div 
+              className="relative h-64 bg-vikasa-latte-100 rounded-lg overflow-hidden"
+              variants={staggerItem}
+            >
               {/* Replace with actual image */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <p className="text-vikasa-latte text-lg font-medium">Team Building</p>
               </div>
               {/* <Image src="/images/about/culture-3.jpg" alt="Team Building" fill style={{objectFit: "cover"}} /> */}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           
-          <div className="bg-white p-8 rounded-lg shadow-md">
+          <motion.div 
+            className="bg-white p-8 rounded-lg shadow-md"
+            variants={fadeInUp}
+          >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div>
                 <h3 className="text-2xl font-bold mb-4 text-vikasa-espresso">Life at Vikasa</h3>
@@ -641,22 +659,37 @@ export default function About() {
                 ></iframe> */}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
       
       {/* 7. Client Relationships */}
-      <section className="py-16 bg-vikasa-gold-50">
+      <motion.section 
+        className="py-16 bg-vikasa-gold-50"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
+          <motion.div 
+            className="max-w-3xl mx-auto text-center mb-16"
+            variants={fadeInUp}
+          >
             <h2 className="text-3xl font-bold mb-6 text-vikasa-espresso">Who We Serve</h2>
             <p className="text-lg text-gray-700">
               We work with forward-thinking organizations committed to transformation and sustainable growth.
             </p>
-          </div>
+          </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div className="bg-white p-8 rounded-lg shadow-md">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
+            variants={staggerContainer}
+          >
+            <motion.div 
+              className="bg-white p-8 rounded-lg shadow-md"
+              variants={staggerItem}
+            >
               <h3 className="text-xl font-bold mb-4 text-vikasa-espresso border-b border-vikasa-gold pb-2">Industries</h3>
               <ul className="space-y-2">
                 <li className="flex items-center text-gray-700"><div className="w-2 h-2 bg-vikasa-gold rounded-full mr-2"></div>Technology & Software</li>
@@ -668,9 +701,12 @@ export default function About() {
                 <li className="flex items-center text-gray-700"><div className="w-2 h-2 bg-vikasa-gold rounded-full mr-2"></div>Education</li>
                 <li className="flex items-center text-gray-700"><div className="w-2 h-2 bg-vikasa-gold rounded-full mr-2"></div>Nonprofit & Social Enterprise</li>
               </ul>
-            </div>
+            </motion.div>
             
-            <div className="bg-white p-8 rounded-lg shadow-md">
+            <motion.div 
+              className="bg-white p-8 rounded-lg shadow-md"
+              variants={staggerItem}
+            >
               <h3 className="text-xl font-bold mb-4 text-vikasa-espresso border-b border-vikasa-gold pb-2">Organization Types</h3>
               <ul className="space-y-2">
                 <li className="flex items-center text-gray-700"><div className="w-2 h-2 bg-vikasa-gold rounded-full mr-2"></div>Global Enterprises</li>
@@ -682,9 +718,12 @@ export default function About() {
                 <li className="flex items-center text-gray-700"><div className="w-2 h-2 bg-vikasa-gold rounded-full mr-2"></div>Nonprofit Organizations</li>
                 <li className="flex items-center text-gray-700"><div className="w-2 h-2 bg-vikasa-gold rounded-full mr-2"></div>Industry Associations</li>
               </ul>
-            </div>
+            </motion.div>
             
-            <div className="bg-white p-8 rounded-lg shadow-md">
+            <motion.div 
+              className="bg-white p-8 rounded-lg shadow-md"
+              variants={staggerItem}
+            >
               <h3 className="text-xl font-bold mb-4 text-vikasa-espresso border-b border-vikasa-gold pb-2">Client Support Approach</h3>
               <p className="text-gray-700 mb-4">Our commitment to clients includes:</p>
               <ul className="space-y-3">
@@ -729,11 +768,14 @@ export default function About() {
                   <span className="text-gray-700">Alumni network for continued learning</span>
                 </li>
               </ul>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           
           {/* Client logos */}
-          <div className="bg-white p-8 rounded-lg shadow-md">
+          <motion.div 
+            className="bg-white p-8 rounded-lg shadow-md"
+            variants={fadeInUp}
+          >
             <h3 className="text-xl font-bold mb-8 text-center text-vikasa-espresso">Our Clients Include</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center justify-items-center">
               {Array.from({ length: 12 }).map((_, index) => (
@@ -743,39 +785,58 @@ export default function About() {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
       
       {/* 8. FAQ About the Company */}
-      <section className="py-16 bg-white">
+      <motion.section 
+        className="py-16 bg-white"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
+          <motion.div 
+            className="max-w-3xl mx-auto text-center mb-16"
+            variants={fadeInUp}
+          >
             <h2 className="text-3xl font-bold mb-6 text-vikasa-espresso">Frequently Asked Questions</h2>
             <p className="text-lg text-gray-700">
               Common questions about our company, approach, and services.
             </p>
-          </div>
+          </motion.div>
           
-          <div className="max-w-4xl mx-auto">
+          <motion.div 
+            className="max-w-4xl mx-auto"
+            variants={staggerContainer}
+          >
             <div className="grid grid-cols-1 gap-6">
               {faqs.map((faq, index) => (
-                <div key={index} className="bg-vikasa-espresso-50 rounded-lg p-6">
+                <motion.div 
+                  key={index} 
+                  className="bg-vikasa-espresso-50 rounded-lg p-6"
+                  variants={staggerItem}
+                >
                   <h3 className="text-xl font-bold mb-3 text-vikasa-espresso">{faq.question}</h3>
                   <p className="text-gray-700">{faq.answer}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
             
-            <div className="mt-12 text-center">
+            <motion.div 
+              className="mt-12 text-center"
+              variants={fadeInUp}
+            >
               <p className="text-lg mb-6 text-vikasa-espresso">Have more questions about how we can help your organization?</p>
               <Link href="/contact" className="bg-vikasa-gold hover:bg-vikasa-gold-light text-vikasa-espresso font-semibold px-6 py-3 rounded-md transition-colors inline-block">
                 Contact Our Team
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </main>
   );
 } 

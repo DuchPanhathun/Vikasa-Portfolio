@@ -2,6 +2,34 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { motion } from "framer-motion";
+
+// Animation variants
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.8 } }
+};
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { 
+      staggerChildren: 0.2,
+      delayChildren: 0.3
+    }
+  }
+};
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
 
 export default function Services() {
   const [activeTab, setActiveTab] = useState('all'); // 'all', 'advisory', 'academy'
@@ -9,9 +37,17 @@ export default function Services() {
   return (
     <div className="min-h-screen bg-gray-50 font-montserrat">
       {/* 1. Hero Section with Overview */}
-      <section className="bg-vikasa-espresso-50 py-16 md:py-24">
+      <motion.section 
+        className="bg-vikasa-espresso-50 py-16 md:py-24"
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4 md:px-8">
-          <div className="max-w-4xl mx-auto text-center mb-16">
+          <motion.div 
+            className="max-w-4xl mx-auto text-center mb-16"
+            variants={fadeInUp}
+          >
             <h1 className="text-3xl md:text-5xl font-bold mb-6 text-vikasa-espresso">Our Services</h1>
             <p className="text-lg md:text-xl text-gray-600 mb-8">
               Comprehensive solutions to transform your business through expert guidance and specialized training programs.
@@ -48,10 +84,15 @@ export default function Services() {
                 Academy Programs
               </button>
             </div>
-          </div>
+          </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div variants={staggerItem}>
               <div className="bg-vikasa-espresso/5 p-8 rounded-xl border border-vikasa-espresso">
                 <div className="w-16 h-16 bg-vikasa-espresso/10 rounded-full flex items-center justify-center mb-6">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-espresso" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -92,9 +133,9 @@ export default function Services() {
                   </svg>
                 </button>
               </div>
-            </div>
+            </motion.div>
             
-            <div>
+            <motion.div variants={staggerItem}>
               <div className="bg-vikasa-gold/5 p-8 rounded-xl border border-vikasa-gold">
                 <div className="w-16 h-16 bg-vikasa-gold/10 rounded-full flex items-center justify-center mb-6">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -135,30 +176,48 @@ export default function Services() {
                   </svg>
                 </button>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
       
       {/* This is a placeholder for services content - we'll add more in subsequent edits */}
-      <section className="py-16">
+      <motion.section 
+        className="py-16"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-center text-vikasa-espresso">
+          <motion.h2 
+            className="text-3xl font-bold mb-8 text-center text-vikasa-espresso"
+            variants={fadeInUp}
+          >
             {activeTab === 'all' && 'Our Complete Service Offerings'}
             {activeTab === 'advisory' && 'Advisory Services'}
             {activeTab === 'academy' && 'Academy Programs'}
-          </h2>
+          </motion.h2>
           
           {/* Advisory Services */}
           {(activeTab === 'all' || activeTab === 'advisory') && (
-            <div className="mb-16">
+            <motion.div 
+              className="mb-16"
+              variants={fadeInUp}
+            >
               {activeTab === 'all' && (
                 <h3 className="text-2xl font-bold mb-6 text-vikasa-latte">Advisory Services</h3>
               )}
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <motion.div 
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                variants={staggerContainer}
+              >
                 {/* Business Strategy Card */}
-                <div className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100 transition-all hover:shadow-md">
+                <motion.div 
+                  className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100 transition-all hover:shadow-md"
+                  variants={staggerItem}
+                >
                   <div className="h-3 bg-vikasa-espresso"></div>
                   <div className="p-6">
                     <div className="w-12 h-12 bg-vikasa-espresso/10 rounded-full flex items-center justify-center mb-4">
@@ -205,10 +264,13 @@ export default function Services() {
                       </svg>
                     </Link>
                   </div>
-                </div>
+                </motion.div>
                 
                 {/* Process Optimization Card */}
-                <div className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100 transition-all hover:shadow-md">
+                <motion.div 
+                  className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100 transition-all hover:shadow-md"
+                  variants={staggerItem}
+                >
                   <div className="h-3 bg-vikasa-latte"></div>
                   <div className="p-6">
                     <div className="w-12 h-12 bg-vikasa-latte/10 rounded-full flex items-center justify-center mb-4">
@@ -255,10 +317,13 @@ export default function Services() {
                       </svg>
                     </Link>
                   </div>
-                </div>
+                </motion.div>
                 
                 {/* Digital Transformation Card */}
-                <div className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100 transition-all hover:shadow-md">
+                <motion.div 
+                  className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100 transition-all hover:shadow-md"
+                  variants={staggerItem}
+                >
                   <div className="h-3 bg-vikasa-gold"></div>
                   <div className="p-6">
                     <div className="w-12 h-12 bg-vikasa-gold/10 rounded-full flex items-center justify-center mb-4">
@@ -305,14 +370,14 @@ export default function Services() {
                       </svg>
                     </Link>
                   </div>
-                </div>
-              </div>
-            </div>
+                </motion.div>
+              </motion.div>
+            </motion.div>
           )}
           
           {/* Academy Programs - placeholder for now */}
           {(activeTab === 'all' || activeTab === 'academy') && (
-            <div>
+            <motion.div variants={fadeInUp}>
               {activeTab === 'all' && (
                 <h3 className="text-2xl font-bold mb-6 text-vikasa-gold">Academy Programs</h3>
               )}
@@ -322,19 +387,36 @@ export default function Services() {
                   Academy Program details will be added in the next implementation phase.
                 </p>
               </div>
-            </div>
+            </motion.div>
           )}
         </div>
-      </section>
+      </motion.section>
       
       {/* Service Delivery Information */}
-      <section className="py-16 bg-gray-50">
+      <motion.section 
+        className="py-16 bg-gray-50"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center text-vikasa-espresso">Our Service Delivery Approach</h2>
+            <motion.h2 
+              className="text-3xl font-bold mb-12 text-center text-vikasa-espresso"
+              variants={fadeInUp}
+            >
+              Our Service Delivery Approach
+            </motion.h2>
             
-            <div className="space-y-8">
-              <div className="flex flex-col md:flex-row gap-8 items-center">
+            <motion.div 
+              className="space-y-8"
+              variants={staggerContainer}
+            >
+              <motion.div 
+                className="flex flex-col md:flex-row gap-8 items-center"
+                variants={staggerItem}
+              >
                 <div className="w-full md:w-1/4 flex justify-center">
                   <div className="w-20 h-20 rounded-full bg-vikasa-espresso text-white flex items-center justify-center text-2xl font-bold">1</div>
                 </div>
@@ -344,9 +426,12 @@ export default function Services() {
                     We begin with a comprehensive analysis of your current situation, challenges, and objectives to develop a clear understanding of your needs.
                   </p>
                 </div>
-              </div>
+              </motion.div>
               
-              <div className="flex flex-col md:flex-row gap-8 items-center">
+              <motion.div 
+                className="flex flex-col md:flex-row gap-8 items-center"
+                variants={staggerItem}
+              >
                 <div className="w-full md:w-1/4 flex justify-center">
                   <div className="w-20 h-20 rounded-full bg-vikasa-latte text-white flex items-center justify-center text-2xl font-bold">2</div>
                 </div>
@@ -356,9 +441,12 @@ export default function Services() {
                     Our team develops a tailored solution and implementation roadmap designed to address your specific challenges and achieve your goals.
                   </p>
                 </div>
-              </div>
+              </motion.div>
               
-              <div className="flex flex-col md:flex-row gap-8 items-center">
+              <motion.div 
+                className="flex flex-col md:flex-row gap-8 items-center"
+                variants={staggerItem}
+              >
                 <div className="w-full md:w-1/4 flex justify-center">
                   <div className="w-20 h-20 rounded-full bg-vikasa-gold text-vikasa-espresso flex items-center justify-center text-2xl font-bold">3</div>
                 </div>
@@ -368,9 +456,12 @@ export default function Services() {
                     We work collaboratively with your team to implement solutions, providing guidance, training, and support throughout the process.
                   </p>
                 </div>
-              </div>
+              </motion.div>
               
-              <div className="flex flex-col md:flex-row gap-8 items-center">
+              <motion.div 
+                className="flex flex-col md:flex-row gap-8 items-center"
+                variants={staggerItem}
+              >
                 <div className="w-full md:w-1/4 flex justify-center">
                   <div className="w-20 h-20 rounded-full bg-vikasa-espresso text-white flex items-center justify-center text-2xl font-bold">4</div>
                 </div>
@@ -380,27 +471,35 @@ export default function Services() {
                     We track progress against key metrics, making adjustments as needed to ensure optimal results and sustained success.
                   </p>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
       
       {/* CTA Section */}
-      <section className="py-16 bg-vikasa-espresso text-white">
+      <motion.section 
+        className="py-16 bg-vikasa-espresso text-white"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeIn}
+      >
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to Transform Your Business?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Contact us today to schedule a consultation and discover how our services can help you achieve your goals.
-          </p>
-          <Link 
-            href="/contact" 
-            className="bg-vikasa-gold text-vikasa-espresso hover:bg-white px-8 py-3 rounded-md text-lg font-medium inline-block transition-colors"
-          >
-            Get Started
-          </Link>
+          <motion.div variants={fadeInUp}>
+            <h2 className="text-3xl font-bold mb-6">Ready to Transform Your Business?</h2>
+            <p className="text-xl mb-8 max-w-2xl mx-auto">
+              Contact us today to schedule a consultation and discover how our services can help you achieve your goals.
+            </p>
+            <Link 
+              href="/contact" 
+              className="bg-vikasa-gold text-vikasa-espresso hover:bg-white px-8 py-3 rounded-md text-lg font-medium inline-block transition-colors"
+            >
+              Get Started
+            </Link>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 }

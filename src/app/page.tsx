@@ -1,4 +1,45 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
+
+// Animation variants for fade-in effects
+const fadeInUp = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.6 }
+  }
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { duration: 0.6 }
+  }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 }
+  }
+};
 
 // Example client logos - replace with actual images
 const clientLogos = [
@@ -75,44 +116,57 @@ export default function Home() {
   return (
     <div className="font-montserrat">
       {/* 1. Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center bg-gradient-to-r from-vikasa-espresso to-vikasa-latte text-white">
+      <motion.section 
+        className="relative h-[80vh] flex items-center justify-center bg-gradient-to-r from-vikasa-espresso to-vikasa-latte text-white"
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+      >
         <div className="absolute inset-0 opacity-20">
           {/* Background image would go here */}
           {/* <Image src="/hero-bg.jpg" alt="Background" fill style={{objectFit: "cover"}} /> */}
         </div>
         <div className="container mx-auto px-4 relative z-10 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+          <motion.h1 
+            className="text-5xl md:text-6xl font-bold mb-6 leading-tight"
+            variants={fadeInUp}
+          >
             Transforming Businesses Through Expert Guidance
-          </h1>
-          <p className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto">
+          </motion.h1>
+          <motion.p 
+            className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto"
+            variants={fadeInUp}
+          >
             Comprehensive advisory services and specialized training programs to elevate your organization&apos;s performance.
-          </p>
-          <div className="flex gap-4 justify-center">
+          </motion.p>
+          <motion.div 
+            className="flex gap-4 justify-center"
+            variants={fadeInUp}
+          >
             <Link href="/contact" className="bg-vikasa-gold hover:bg-vikasa-latte text-vikasa-espresso font-semibold px-8 py-3 rounded-md transition-colors text-lg">
               Book a Consultation
             </Link>
             <Link href="/resource" className="bg-white hover:bg-gray-100 text-vikasa-espresso font-semibold px-8 py-3 rounded-md transition-colors text-lg">
               Explore Courses
             </Link>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 2. Key Benefits Bar */}
-      <section className="bg-vikasa-espresso-50 py-10">
+      <motion.section 
+        className="bg-vikasa-espresso-50 py-10"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={staggerContainer}
+      >
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-vikasa-gold/20 p-4 rounded-full mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-espresso" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-vikasa-espresso">95% Client Satisfaction</h3>
-              <p>Consistently delivering exceptional results for our clients.</p>
-            </div>
-            
-            <div className="flex flex-col items-center text-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <motion.div 
+              className="flex flex-col items-center text-center"
+              variants={staggerItem}
+            >
               <div className="bg-vikasa-gold/20 p-4 rounded-full mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-espresso" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -120,9 +174,12 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-2 text-vikasa-espresso">20+ Years Experience</h3>
               <p>Extensive expertise across multiple industries and disciplines.</p>
-            </div>
+            </motion.div>
             
-            <div className="flex flex-col items-center text-center">
+            <motion.div 
+              className="flex flex-col items-center text-center"
+              variants={staggerItem}
+            >
               <div className="bg-vikasa-gold/20 p-4 rounded-full mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-espresso" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -130,9 +187,12 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-2 text-vikasa-espresso">200+ Projects Completed</h3>
               <p>Proven track record of successful engagements worldwide.</p>
-            </div>
+            </motion.div>
             
-            <div className="flex flex-col items-center text-center">
+            <motion.div 
+              className="flex flex-col items-center text-center"
+              variants={staggerItem}
+            >
               <div className="bg-vikasa-gold/20 p-4 rounded-full mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-espresso" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -140,18 +200,35 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-2 text-vikasa-espresso">Global Presence</h3>
               <p>Serving clients across 20+ countries with tailored solutions.</p>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 3. Services Preview */}
-      <section className="py-20 bg-vikasa-gold-50">
+      <motion.section 
+        className="py-20 bg-vikasa-gold-50"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeInUp}
+      >
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-vikasa-espresso">Our Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold text-center mb-16 text-vikasa-espresso"
+            variants={fadeInUp}
+          >
+            Our Services
+          </motion.h2>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+            variants={staggerContainer}
+          >
             {/* Service Card 1 */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105">
+            <motion.div 
+              className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105"
+              variants={staggerItem}
+            >
               <div className="h-48 bg-vikasa-latte flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -167,10 +244,13 @@ export default function Home() {
                   </svg>
                 </Link>
               </div>
-            </div>
+            </motion.div>
             
             {/* Service Card 2 */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105">
+            <motion.div 
+              className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105"
+              variants={staggerItem}
+            >
               <div className="h-48 bg-vikasa-latte flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
@@ -186,10 +266,13 @@ export default function Home() {
                   </svg>
                 </Link>
               </div>
-            </div>
+            </motion.div>
             
             {/* Service Card 3 */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105">
+            <motion.div 
+              className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105"
+              variants={staggerItem}
+            >
               <div className="h-48 bg-vikasa-latte flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -205,18 +288,35 @@ export default function Home() {
                   </svg>
                 </Link>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 4. Featured Case Study */}
-      <section className="bg-vikasa-espresso-50 py-20">
+      <motion.section 
+        className="bg-vikasa-espresso-50 py-20"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeInUp}
+      >
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-vikasa-espresso">Client Success Story</h2>
-          <div className="bg-white rounded-xl shadow-xl overflow-hidden">
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold text-center mb-16 text-vikasa-espresso"
+            variants={fadeInUp}
+          >
+            Client Success Story
+          </motion.h2>
+          <motion.div 
+            className="bg-white rounded-xl shadow-xl overflow-hidden"
+            variants={fadeInUp}
+          >
             <div className="grid grid-cols-1 lg:grid-cols-2">
-              <div className="p-8 lg:p-12 flex flex-col justify-center">
+              <motion.div 
+                className="p-8 lg:p-12 flex flex-col justify-center"
+                variants={fadeInUp}
+              >
                 <div className="inline-block px-4 py-2 bg-vikasa-gold/20 text-vikasa-espresso font-medium rounded-full mb-6">Case Study</div>
                 <h3 className="text-2xl font-bold mb-4 text-vikasa-espresso">Global Tech Enterprise</h3>
                 <p className="text-lg text-black mb-6 font-medium">Challenge: Outdated systems and processes causing operational inefficiencies and declining market share.</p>
@@ -250,23 +350,44 @@ export default function Home() {
                     <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
                 </Link>
-              </div>
-              <div className="bg-vikasa-latte">
+              </motion.div>
+              <motion.div 
+                className="bg-vikasa-latte"
+                variants={fadeInUp}
+              >
                 {/* Case study image would go here */}
                 {/* <Image src="/case-study.jpg" alt="Case Study" width={600} height={800} className="w-full h-full object-cover" /> */}
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 5. Testimonial Slider */}
-      <section className="py-20 bg-vikasa-gold-50">
+      <motion.section 
+        className="py-20 bg-vikasa-gold-50"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeInUp}
+      >
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-vikasa-espresso">What Our Clients Say</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold text-center mb-16 text-vikasa-espresso"
+            variants={fadeInUp}
+          >
+            What Our Clients Say
+          </motion.h2>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            variants={staggerContainer}
+          >
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white p-8 rounded-lg shadow-lg">
+              <motion.div 
+                key={index} 
+                className="bg-white p-8 rounded-lg shadow-lg"
+                variants={staggerItem}
+              >
                 <div className="flex items-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <svg key={i} xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-vikasa-gold" viewBox="0 0 20 20" fill="currentColor">
@@ -285,16 +406,25 @@ export default function Home() {
                     <p className="text-sm text-vikasa-latte">{testimonial.position}, {testimonial.company}</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 6. Latest Resources */}
-      <section className="bg-vikasa-espresso-50 py-20">
+      <motion.section 
+        className="bg-vikasa-espresso-50 py-20"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeInUp}
+      >
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center mb-16">
+          <motion.div 
+            className="flex flex-col md:flex-row justify-between items-center mb-16"
+            variants={fadeInUp}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-vikasa-espresso">Latest Resources</h2>
             <Link href="/resources" className="mt-4 md:mt-0 text-vikasa-latte font-semibold hover:text-vikasa-espresso inline-flex items-center">
               View All Resources
@@ -302,11 +432,18 @@ export default function Home() {
                 <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>
             </Link>
-          </div>
+          </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+            variants={staggerContainer}
+          >
             {blogPosts.map((post, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
+              <motion.div 
+                key={index} 
+                className="bg-white rounded-lg shadow-md overflow-hidden"
+                variants={staggerItem}
+              >
                 <div className="h-48 bg-vikasa-latte/30">
                   {/* Blog post image would go here */}
                   {/* <Image src={post.image} alt={post.title} width={400} height={250} className="w-full h-full object-cover" /> */}
@@ -319,11 +456,14 @@ export default function Home() {
                     Read More
                   </Link>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
           
-          <div className="bg-vikasa-espresso text-white rounded-xl p-8 md:p-12">
+          <motion.div 
+            className="bg-vikasa-espresso text-white rounded-xl p-8 md:p-12"
+            variants={fadeInUp}
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
                 <h3 className="text-2xl font-bold mb-3">Subscribe to Our Newsletter</h3>
@@ -342,40 +482,66 @@ export default function Home() {
                 </form>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 7. Trust Signals */}
-      <section className="py-16 bg-vikasa-gold-50">
+      <motion.section 
+        className="py-16 bg-vikasa-gold-50"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeInUp}
+      >
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-12">
+          <motion.div 
+            className="max-w-4xl mx-auto text-center mb-12"
+            variants={fadeInUp}
+          >
             <h2 className="text-3xl font-bold mb-4 text-vikasa-espresso">Trusted By Industry Leaders</h2>
             <p className="text-lg text-gray-600">Join the ranks of elite organizations that rely on our expertise</p>
-          </div>
+          </motion.div>
           
           {/* Client logos */}
-          <div className="mb-12">
+          <motion.div 
+            className="mb-12"
+            variants={fadeInUp}
+          >
             <h3 className="text-xl font-semibold mb-8 text-center text-vikasa-latte">Our Clients</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
+            <motion.div 
+              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center"
+              variants={staggerContainer}
+            >
               {clientLogos.map((client, index) => (
-                <div key={index} className="grayscale hover:grayscale-0 transition-all duration-300">
+                <motion.div 
+                  key={index} 
+                  className="grayscale hover:grayscale-0 transition-all duration-300"
+                  variants={staggerItem}
+                >
                   <div className="h-20 w-40 bg-white flex items-center justify-center rounded shadow-sm border border-gray-200 hover:border-vikasa-gold hover:shadow-md transition-all duration-300">
                     {/* Replace with actual logos when available */}
                     {/* <Image src={client.logo} alt={client.name} width={120} height={60} /> */}
                     <span className="text-gray-500 font-medium">{client.name}</span>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           
           {/* Awards and certifications */}
-          <div>
+          <motion.div variants={fadeInUp}>
             <h3 className="text-xl font-semibold mb-8 text-center text-vikasa-latte">Awards & Certifications</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
+            <motion.div 
+              className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center"
+              variants={staggerContainer}
+            >
               {awardsAndCertifications.map((item, index) => (
-                <div key={index} className="group">
+                <motion.div 
+                  key={index} 
+                  className="group"
+                  variants={staggerItem}
+                >
                   <div className="h-24 w-48 bg-white flex flex-col items-center justify-center rounded-lg shadow-sm border border-gray-200 hover:border-vikasa-gold hover:shadow-md transition-all duration-300 p-4">
                     {/* Replace with actual logos when available */}
                     {/* <Image src={item.logo} alt={item.name} width={60} height={60} className="mb-2" /> */}
@@ -386,14 +552,20 @@ export default function Home() {
                     </div>
                     <span className="text-gray-700 font-medium text-center text-sm">{item.name}</span>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           
           {/* Trust indicators */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg border border-gray-200 flex flex-col items-center text-center">
+          <motion.div 
+            className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
+            variants={staggerContainer}
+          >
+            <motion.div 
+              className="bg-white p-6 rounded-lg border border-gray-200 flex flex-col items-center text-center"
+              variants={staggerItem}
+            >
               <div className="w-14 h-14 rounded-full bg-vikasa-gold/20 flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -401,9 +573,12 @@ export default function Home() {
               </div>
               <h4 className="text-lg font-bold mb-2 text-vikasa-espresso">Data Security</h4>
               <p className="text-gray-600">Enterprise-grade security protocols and compliance with industry standards</p>
-            </div>
+            </motion.div>
             
-            <div className="bg-white p-6 rounded-lg border border-gray-200 flex flex-col items-center text-center">
+            <motion.div 
+              className="bg-white p-6 rounded-lg border border-gray-200 flex flex-col items-center text-center"
+              variants={staggerItem}
+            >
               <div className="w-14 h-14 rounded-full bg-vikasa-gold/20 flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -411,9 +586,12 @@ export default function Home() {
               </div>
               <h4 className="text-lg font-bold mb-2 text-vikasa-espresso">100% Satisfaction</h4>
               <p className="text-gray-600">Our commitment to excellence and client satisfaction guarantee</p>
-            </div>
+            </motion.div>
             
-            <div className="bg-white p-6 rounded-lg border border-gray-200 flex flex-col items-center text-center">
+            <motion.div 
+              className="bg-white p-6 rounded-lg border border-gray-200 flex flex-col items-center text-center"
+              variants={staggerItem}
+            >
               <div className="w-14 h-14 rounded-full bg-vikasa-gold/20 flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-vikasa-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -421,23 +599,39 @@ export default function Home() {
               </div>
               <h4 className="text-lg font-bold mb-2 text-vikasa-espresso">Expert Team</h4>
               <p className="text-gray-600">Industry veterans with proven track records of success</p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 8. Secondary CTA */}
-      <section className="bg-vikasa-espresso text-white py-20">
+      <motion.section 
+        className="bg-vikasa-espresso text-white py-20"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeInUp}
+      >
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl text-white md:text-4xl font-bold mb-6">Ready to Transform Your Business?</h2>
-          <p className="text-xl mb-10 max-w-3xl mx-auto text-white">
+          <motion.h2 
+            className="text-3xl text-white md:text-4xl font-bold mb-6"
+            variants={fadeInUp}
+          >
+            Ready to Transform Your Business?
+          </motion.h2>
+          <motion.p 
+            className="text-xl mb-10 max-w-3xl mx-auto text-white"
+            variants={fadeInUp}
+          >
             Join hundreds of organizations that have accelerated their growth with our proven methodologies.
-          </p>
-          <Link href="/contact" className="bg-vikasa-gold text-vikasa-espresso hover:bg-white font-bold px-8 py-4 rounded-lg text-lg inline-block transition-colors">
-            Schedule a Strategy Call
-          </Link>
+          </motion.p>
+          <motion.div variants={fadeInUp}>
+            <Link href="/contact" className="bg-vikasa-gold text-vikasa-espresso hover:bg-white font-bold px-8 py-4 rounded-lg text-lg inline-block transition-colors">
+              Schedule a Strategy Call
+            </Link>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 }
