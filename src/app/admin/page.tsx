@@ -4,6 +4,24 @@ import React, { useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
+import BannerManager from '@/components/admin/BannerManager'
+import ExperienceManager from '@/components/admin/ExperienceManager'
+import ClientManager from '@/components/admin/ClientManager'
+import AwardManager from '@/components/admin/AwardManager'
+import JourneyManager from '@/components/admin/JourneyManager'
+import VisionManager from '@/components/admin/VisionManager'
+import CoreValueManager from '@/components/admin/CoreValueManager'
+import StaffManager from '@/components/admin/StaffManager'
+import CredentialManager from '@/components/admin/CredentialManager'
+import ImpactManager from '@/components/admin/ImpactManager'
+import SocialImpactManager from '@/components/admin/SocialImpactManager'
+import CultureManager from '@/components/admin/CultureManager'
+import LifeAtVikasaManager from '@/components/admin/LifeAtVikasaManager'
+import WhoWeServeManager from '@/components/admin/WhoWeServeManager'
+import FAQManager from '@/components/admin/FAQManager'
+import ServicesManager from '@/components/admin/ServicesManager'
+import ArticleManager from '@/components/admin/ArticleManager'
+import WhitePaperManager from '@/components/admin/WhitePaperManager'
 
 const fadeIn = {
   hidden: { opacity: 0 },
@@ -32,7 +50,8 @@ const staggerItem = {
 
 export default function AdminPage() {
   const { user, signOut, loading, isAdmin } = useAuth()
-  const [activeTab, setActiveTab] = useState('content')
+  const [activeTab, setActiveTab] = useState('banner')
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const router = useRouter()
 
   // Redirect if not admin
@@ -71,208 +90,193 @@ export default function AdminPage() {
     router.push('/')
   }
 
+  const tabs = [
+    { id: 'banner', label: 'Banner', icon: '🖼️' },
+    { id: 'experience', label: 'Experience', icon: '⭐' },
+    { id: 'clients', label: 'Clients', icon: '👥' },
+    { id: 'awards', label: 'Awards & Certificates', icon: '🏆' },
+    { id: 'journey', label: 'Our Journey', icon: '🛤️' },
+    { id: 'vision', label: 'Vision', icon: '👁️' },
+    { id: 'core-values', label: 'Core Values', icon: '💎' },
+    { id: 'staff', label: 'Staff', icon: '👨‍💼' },
+    { id: 'credentials', label: 'Our Credentials', icon: '📜' },
+    { id: 'impact', label: 'Our Impact', icon: '📊' },
+    { id: 'social-impact', label: 'Social Impact', icon: '🌍' },
+    { id: 'culture', label: 'Our Culture', icon: '🎭' },
+    { id: 'life-at-vikasa', label: 'Life at Vikasa', icon: '🏢' },
+    { id: 'who-we-serve', label: 'Who We Serve', icon: '🤝' },
+    { id: 'faq', label: 'FAQ', icon: '❓' },
+    { id: 'services', label: 'Services', icon: '🔧' },
+    { id: 'articles', label: 'Articles', icon: '📝' },
+    { id: 'white-papers', label: 'White Papers', icon: '📄' }
+  ]
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <motion.header 
-        className="bg-white shadow-sm border-b"
+    <div className="min-h-screen bg-gray-50 flex">
+      {/* Mobile sidebar overlay */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <motion.aside 
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
         initial="hidden"
         animate="visible"
         variants={fadeIn}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <motion.div variants={fadeInUp}>
-              <h1 className="text-2xl font-bold text-vikasa-espresso">Vikasa Admin Dashboard</h1>
-              <p className="text-sm text-gray-600">Welcome back, {user.email}</p>
-            </motion.div>
-            <motion.div variants={fadeInUp}>
-              <button
-                onClick={handleSignOut}
-                className="bg-vikasa-espresso text-white px-4 py-2 rounded-md hover:bg-vikasa-espresso/90 transition-colors"
-              >
-                Sign Out
-              </button>
-            </motion.div>
-          </div>
-        </div>
-      </motion.header>
-
-      {/* Navigation Tabs */}
-      <motion.nav 
-        className="bg-white border-b"
-        initial="hidden"
-        animate="visible"
-        variants={fadeInUp}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex space-x-8">
+        <div className="flex flex-col h-full">
+          {/* Sidebar Header */}
+          <div className="flex items-center justify-between p-4 border-b border-gray-200">
+            <div className="flex items-center">
+              <div className="w-8 h-8 bg-vikasa-espresso rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                V
+              </div>
+              <span className="ml-2 text-lg font-semibold text-vikasa-espresso">Admin</span>
+            </div>
             <button
-              onClick={() => setActiveTab('content')}
-              className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                activeTab === 'content'
-                  ? 'border-vikasa-espresso text-vikasa-espresso'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-              }`}
+              onClick={() => setSidebarOpen(false)}
+              className="lg:hidden p-1 rounded-md hover:bg-gray-100"
             >
-              Content Management
-            </button>
-            <button
-              onClick={() => setActiveTab('uploads')}
-              className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                activeTab === 'uploads'
-                  ? 'border-vikasa-espresso text-vikasa-espresso'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-              }`}
-            >
-              File Uploads
-            </button>
-            <button
-              onClick={() => setActiveTab('settings')}
-              className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                activeTab === 'settings'
-                  ? 'border-vikasa-espresso text-vikasa-espresso'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-              }`}
-            >
-              Settings
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
             </button>
           </div>
-        </div>
-      </motion.nav>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <motion.div
+          {/* Navigation */}
+          <nav className="flex-1 overflow-y-auto p-4">
+            <div className="space-y-1">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => {
+                    setActiveTab(tab.id)
+                    setSidebarOpen(false) // Close mobile sidebar when item is selected
+                  }}
+                  className={`w-full flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                    activeTab === tab.id
+                      ? 'bg-vikasa-espresso text-white'
+                      : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                  }`}
+                >
+                  <span className="mr-3 text-lg">{tab.icon}</span>
+                  <span className="truncate">{tab.label}</span>
+                </button>
+              ))}
+            </div>
+          </nav>
+
+          {/* User Info & Sign Out */}
+          <div className="border-t border-gray-200 p-4">
+            <div className="flex items-center mb-3">
+              <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div className="ml-3 flex-1 min-w-0">
+                <p className="text-sm font-medium text-gray-900 truncate">Admin</p>
+                <p className="text-xs text-gray-500 truncate">{user.email}</p>
+              </div>
+            </div>
+            <button
+              onClick={handleSignOut}
+              className="w-full flex items-center px-3 py-2 text-sm font-medium text-red-700 rounded-lg hover:bg-red-50 transition-colors"
+            >
+              <svg className="mr-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+              Sign Out
+            </button>
+          </div>
+        </div>
+      </motion.aside>
+
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col min-w-0">
+        {/* Top Header */}
+        <motion.header 
+          className="bg-white shadow-sm border-b lg:hidden"
           initial="hidden"
           animate="visible"
-          variants={staggerContainer}
+          variants={fadeIn}
         >
-          {activeTab === 'content' && (
-            <motion.div variants={staggerItem}>
-              <div className="bg-white rounded-lg shadow p-6">
-                <h2 className="text-xl font-semibold mb-4 text-vikasa-espresso">Content Management</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {/* Service Content */}
-                  <div className="border rounded-lg p-4">
-                    <h3 className="font-medium text-gray-900 mb-2">Service Content</h3>
-                    <p className="text-sm text-gray-600 mb-4">Manage service descriptions and offerings</p>
-                    <button className="w-full bg-vikasa-latte text-white py-2 px-4 rounded hover:bg-vikasa-latte/90 transition-colors">
-                      Edit Services
-                    </button>
-                  </div>
-
-                  {/* About Content */}
-                  <div className="border rounded-lg p-4">
-                    <h3 className="font-medium text-gray-900 mb-2">About Content</h3>
-                    <p className="text-sm text-gray-600 mb-4">Update company information and team details</p>
-                    <button className="w-full bg-vikasa-latte text-white py-2 px-4 rounded hover:bg-vikasa-latte/90 transition-colors">
-                      Edit About
-                    </button>
-                  </div>
-
-                  {/* Resource Content */}
-                  <div className="border rounded-lg p-4">
-                    <h3 className="font-medium text-gray-900 mb-2">Resource Content</h3>
-                    <p className="text-sm text-gray-600 mb-4">Manage blog posts and resources</p>
-                    <button className="w-full bg-vikasa-latte text-white py-2 px-4 rounded hover:bg-vikasa-latte/90 transition-colors">
-                      Edit Resources
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-
-          {activeTab === 'uploads' && (
-            <motion.div variants={staggerItem}>
-              <div className="bg-white rounded-lg shadow p-6">
-                <h2 className="text-xl font-semibold mb-4 text-vikasa-espresso">File Uploads</h2>
-                
-                {/* Upload Area */}
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center mb-6">
-                  <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
-                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <div className="px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-16">
+              <div className="flex items-center">
+                <button
+                  onClick={() => setSidebarOpen(true)}
+                  className="p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                   </svg>
-                  <div className="mt-4">
-                    <label htmlFor="file-upload" className="cursor-pointer">
-                      <span className="mt-2 block text-sm font-medium text-gray-900">
-                        Drop files here or click to upload
-                      </span>
-                      <input id="file-upload" name="file-upload" type="file" className="sr-only" multiple />
-                    </label>
-                    <p className="mt-1 text-xs text-gray-500">PNG, JPG, PDF up to 10MB</p>
-                  </div>
-                </div>
-
-                {/* Recent Uploads */}
-                <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Recent Uploads</h3>
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <p className="text-gray-500 text-center">No files uploaded yet</p>
-                  </div>
-                </div>
+                </button>
+                <h1 className="ml-4 text-xl font-semibold text-vikasa-espresso">
+                  {tabs.find(tab => tab.id === activeTab)?.label || 'Admin Dashboard'}
+                </h1>
               </div>
-            </motion.div>
-          )}
+            </div>
+          </div>
+        </motion.header>
 
-          {activeTab === 'settings' && (
-            <motion.div variants={staggerItem}>
-              <div className="bg-white rounded-lg shadow p-6">
-                <h2 className="text-xl font-semibold mb-4 text-vikasa-espresso">Settings</h2>
-                
-                <div className="space-y-6">
-                  {/* Site Settings */}
-                  <div>
-                    <h3 className="text-lg font-medium text-gray-900 mb-4">Site Settings</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Site Title</label>
-                        <input 
-                          type="text" 
-                          defaultValue="Vikasa Portfolio"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-vikasa-espresso focus:border-vikasa-espresso"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Contact Email</label>
-                        <input 
-                          type="email" 
-                          defaultValue="contact@vikasa.com"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-vikasa-espresso focus:border-vikasa-espresso"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* User Management */}
-                  <div>
-                    <h3 className="text-lg font-medium text-gray-900 mb-4">User Management</h3>
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="font-medium text-gray-900">{user.email}</p>
-                          <p className="text-sm text-gray-500">Administrator</p>
-                        </div>
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                          Active
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Save Button */}
-                  <div className="pt-4">
-                    <button className="bg-vikasa-espresso text-white px-6 py-2 rounded-md hover:bg-vikasa-espresso/90 transition-colors">
-                      Save Changes
-                    </button>
-                  </div>
-                </div>
+        {/* Desktop Header */}
+        <motion.header 
+          className="hidden lg:block bg-white shadow-sm border-b"
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+        >
+          <div className="px-6 lg:px-8">
+            <div className="flex items-center justify-between h-16">
+              <div>
+                <h1 className="text-2xl font-bold text-vikasa-espresso">
+                  {tabs.find(tab => tab.id === activeTab)?.label || 'Admin Dashboard'}
+                </h1>
+                <p className="text-sm text-gray-600">Welcome back, {user.email}</p>
               </div>
+            </div>
+          </div>
+        </motion.header>
+
+        {/* Main Content */}
+        <main className="flex-1 overflow-auto">
+          <div className="p-6">
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={staggerContainer}
+            >
+              <motion.div variants={staggerItem}>
+                {activeTab === 'banner' && <BannerManager />}
+                {activeTab === 'experience' && <ExperienceManager />}
+                {activeTab === 'clients' && <ClientManager />}
+                {activeTab === 'awards' && <AwardManager />}
+                {activeTab === 'journey' && <JourneyManager />}
+                {activeTab === 'vision' && <VisionManager />}
+                {activeTab === 'core-values' && <CoreValueManager />}
+                {activeTab === 'staff' && <StaffManager />}
+                {activeTab === 'credentials' && <CredentialManager />}
+                {activeTab === 'impact' && <ImpactManager />}
+                {activeTab === 'social-impact' && <SocialImpactManager />}
+                {activeTab === 'culture' && <CultureManager />}
+                {activeTab === 'life-at-vikasa' && <LifeAtVikasaManager />}
+                {activeTab === 'who-we-serve' && <WhoWeServeManager />}
+                {activeTab === 'faq' && <FAQManager />}
+                {activeTab === 'services' && <ServicesManager />}
+                {activeTab === 'articles' && <ArticleManager />}
+                {activeTab === 'white-papers' && <WhitePaperManager />}
+              </motion.div>
             </motion.div>
-          )}
-        </motion.div>
-      </main>
+          </div>
+        </main>
+      </div>
     </div>
   )
 }

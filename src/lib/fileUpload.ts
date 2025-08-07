@@ -52,7 +52,7 @@ export async function deleteFile(filePath: string): Promise<UploadResult> {
   }
 }
 
-export async function listFiles(folder: string = ''): Promise<{ success: boolean; files?: any[]; error?: string }> {
+export async function listFiles(folder: string = ''): Promise<{ success: boolean; files?: Array<{ name: string; id: string; updated_at: string; created_at: string; last_accessed_at: string; metadata: Record<string, unknown> }>; error?: string }> {
   try {
     const { data, error } = await supabase.storage
       .from(process.env.SUPABASE_STORAGE_BUCKET || 'uploads')
