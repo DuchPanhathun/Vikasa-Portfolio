@@ -185,8 +185,7 @@ export default function Services() {
       <motion.section 
         className="py-16"
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        animate="visible"
         variants={fadeIn}
       >
         <div className="container mx-auto px-4">
@@ -202,7 +201,10 @@ export default function Services() {
           {/* Advisory Services */}
           {(activeTab === 'all' || activeTab === 'advisory') && (
             <motion.div 
+              key={`advisory-${activeTab}`}
               className="mb-16"
+              initial="hidden"
+              animate="visible"
               variants={fadeInUp}
             >
               {activeTab === 'all' && (
@@ -211,6 +213,8 @@ export default function Services() {
               
               <motion.div 
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                initial="hidden"
+                animate="visible"
                 variants={staggerContainer}
               >
                 {/* Business Strategy Card */}
@@ -377,7 +381,12 @@ export default function Services() {
           
           {/* Academy Programs - placeholder for now */}
           {(activeTab === 'all' || activeTab === 'academy') && (
-            <motion.div variants={fadeInUp}>
+            <motion.div 
+              key={`academy-${activeTab}`}
+              initial="hidden"
+              animate="visible"
+              variants={fadeInUp}
+            >
               {activeTab === 'all' && (
                 <h3 className="text-2xl font-bold mb-6 text-vikasa-gold">Academy Programs</h3>
               )}
