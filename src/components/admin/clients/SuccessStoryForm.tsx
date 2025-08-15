@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Client } from '@/lib/supabaseService'
+import RichTextEditor from '@/components/ui/RichTextEditor'
 
 interface StoryFormData {
   client_id: string
@@ -73,13 +74,11 @@ export default function SuccessStoryForm({
         
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Story Description</label>
-          <textarea
-            value={formData.description}
-            onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-            rows={4}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-vikasa-espresso focus:border-vikasa-espresso"
-            required
-            placeholder="Detailed description of the success story..."
+          <RichTextEditor
+            content={formData.description}
+            onChange={(content) => setFormData(prev => ({ ...prev, description: content }))}
+            placeholder="Detailed description of the success story with formatting..."
+            className="w-full"
           />
         </div>
         

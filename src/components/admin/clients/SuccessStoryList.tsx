@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { SuccessStory } from '@/lib/supabaseService'
+import RichTextViewer from '@/components/ui/RichTextViewer'
 
 interface SuccessStoryListProps {
   stories: SuccessStory[]
@@ -38,14 +39,14 @@ export default function SuccessStoryList({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {stories.map((story) => (
-          <div key={story.id} className="border rounded-lg overflow-hidden">
+          <div key={story.id} className="border rounded-lg overflow-hidden flex">
             {story.image && (
               <Image 
                 src={story.image} 
                 alt={story.title}
                 width={400}
-                height={192}
-                className="object-cover w-full"
+                height={120}
+                className="object-cover w-full h-fit"
               />
             )}
             <div className="p-4">
@@ -73,7 +74,10 @@ export default function SuccessStoryList({
               <p className="text-sm text-gray-600 mb-2">
                 Client: {story.client?.name || 'Unknown Client'}
               </p>
-              <p className="text-gray-600 mb-2">{story.description}</p>
+              <RichTextViewer 
+                content={story.description} 
+                className="text-gray-600 mb-2"
+              />
               <p className="text-xs text-gray-400">
                 Created: {new Date(story.created_at).toLocaleDateString()}
               </p>

@@ -10,7 +10,7 @@ interface RichTextViewerProps {
 export default function RichTextViewer({ content, className = "" }: RichTextViewerProps) {
   return (
     <div 
-      className={`prose prose-sm max-w-none ${className}`}
+      className={`prose prose-sm max-w-none font-montserrat ${className}`}
       dangerouslySetInnerHTML={{ __html: content }}
     />
   )

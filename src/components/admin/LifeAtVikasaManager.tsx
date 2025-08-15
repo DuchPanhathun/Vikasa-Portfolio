@@ -5,6 +5,8 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { uploadFile } from '@/lib/fileUpload'
 import { lifeAtVikasaService, type LifeAtVikasa } from '@/lib/supabaseService'
+import RichTextEditor from '@/components/ui/RichTextEditor'
+import RichTextViewer from '@/components/ui/RichTextViewer'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -158,13 +160,11 @@ export default function LifeAtVikasaManager() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Description
                 </label>
-                <textarea
-                  value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  rows={4}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-vikasa-espresso"
-                  placeholder="Describe life at Vikasa..."
-                  required
+                <RichTextEditor
+                  content={formData.description}
+                  onChange={(content) => setFormData({ ...formData, description: content })}
+                  placeholder="Describe life at Vikasa with formatting..."
+                  className="w-full"
                 />
               </div>
 
@@ -241,7 +241,10 @@ export default function LifeAtVikasaManager() {
               )}
               
               <div className="p-6">
-                <p className="text-gray-700 leading-relaxed mb-4">{item.description}</p>
+                <RichTextViewer 
+                  content={item.description} 
+                  className="text-gray-700 leading-relaxed mb-4"
+                />
                 
                 <div className="flex justify-between items-center pt-4 border-t">
                   <p className="text-xs text-gray-500">

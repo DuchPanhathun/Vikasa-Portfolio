@@ -22,6 +22,26 @@ export default function CoreValueManager() {
     detail: ''
   })
 
+  // Predefined icons for selection
+  const availableIcons = [
+    { id: 'integrity', symbol: '🛡️', name: 'Shield (Integrity)' },
+    { id: 'excellence', symbol: '⭐', name: 'Star (Excellence)' },
+    { id: 'innovation', symbol: '💡', name: 'Lightbulb (Innovation)' },
+    { id: 'partnership', symbol: '🤝', name: 'Handshake (Partnership)' },
+    { id: 'impact', symbol: '⚡', name: 'Lightning (Impact)' },
+    { id: 'growth', symbol: '📈', name: 'Chart (Growth)' },
+    { id: 'team', symbol: '👥', name: 'People (Team)' },
+    { id: 'quality', symbol: '✨', name: 'Sparkles (Quality)' },
+    { id: 'trust', symbol: '🔒', name: 'Lock (Trust)' },
+    { id: 'vision', symbol: '👁️', name: 'Eye (Vision)' },
+    { id: 'success', symbol: '🎯', name: 'Target (Success)' },
+    { id: 'leadership', symbol: '👑', name: 'Crown (Leadership)' },
+    { id: 'knowledge', symbol: '📚', name: 'Books (Knowledge)' },
+    { id: 'creativity', symbol: '🎨', name: 'Palette (Creativity)' },
+    { id: 'communication', symbol: '💬', name: 'Speech (Communication)' },
+    { id: 'efficiency', symbol: '⚙️', name: 'Gear (Efficiency)' }
+  ]
+
   const loadCoreValues = async () => {
     try {
       setIsLoading(true)
@@ -139,16 +159,30 @@ export default function CoreValueManager() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Icon (URL or icon class)
+                  Select Icon
                 </label>
-                <input
-                  type="text"
-                  value={formData.icon}
-                  onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-vikasa-espresso"
-                  placeholder="Enter icon URL or class name..."
-                  required
-                />
+                <div className="grid grid-cols-4 gap-2 p-3 border border-gray-300 rounded-lg max-h-48 overflow-y-auto">
+                  {availableIcons.map((icon) => (
+                    <button
+                      key={icon.id}
+                      type="button"
+                      onClick={() => setFormData({ ...formData, icon: icon.symbol })}
+                      className={`p-3 rounded-lg border-2 transition-all hover:bg-gray-50 ${
+                        formData.icon === icon.symbol
+                          ? 'border-vikasa-espresso bg-vikasa-espresso/10'
+                          : 'border-gray-200'
+                      }`}
+                      title={icon.name}
+                    >
+                      <div className="text-2xl">{icon.symbol}</div>
+                    </button>
+                  ))}
+                </div>
+                {formData.icon && (
+                  <div className="mt-2 text-sm text-gray-600">
+                    Selected: <span className="text-lg">{formData.icon}</span>
+                  </div>
+                )}
               </div>
 
               <div>
@@ -218,7 +252,7 @@ export default function CoreValueManager() {
                     className="object-contain"
                   />
                 ) : (
-                  <div className="w-8 h-8 bg-vikasa-espresso text-white rounded flex items-center justify-center text-sm">
+                  <div className="w-8 h-8 flex items-center justify-center text-2xl">
                     {value.icon}
                   </div>
                 )}

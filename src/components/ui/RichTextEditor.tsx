@@ -5,6 +5,7 @@ import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { TextStyle } from '@tiptap/extension-text-style'
 import { Color } from '@tiptap/extension-color'
+import { FontSize } from '@tiptap/extension-font-size'
 
 interface RichTextEditorProps {
   content: string
@@ -30,6 +31,7 @@ export default function RichTextEditor({
       StarterKit,
       TextStyle,
       Color,
+      FontSize,
     ],
     content: content,
     immediatelyRender: false,
@@ -38,7 +40,7 @@ export default function RichTextEditor({
     },
     editorProps: {
       attributes: {
-        class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none min-h-[200px] p-4',
+        class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none min-h-[200px] p-4 font-montserrat',
       },
     },
   }, [])
@@ -186,6 +188,53 @@ export default function RichTextEditor({
         >
           —
         </ToolbarButton>
+
+        <div className="w-px h-5 bg-gray-300 mx-0.5" />
+
+        {/* Text Size Controls */}
+        <div className="flex items-center gap-0.5">
+          <ToolbarButton
+            onClick={() => editor.chain().focus().setFontSize('12px').run()}
+            title="Small Text"
+          >
+            <span className="text-xs font-bold">A</span>
+          </ToolbarButton>
+          
+          <ToolbarButton
+            onClick={() => editor.chain().focus().setFontSize('14px').run()}
+            title="Normal Text"
+          >
+            <span className="text-sm font-bold">A</span>
+          </ToolbarButton>
+          
+          <ToolbarButton
+            onClick={() => editor.chain().focus().setFontSize('16px').run()}
+            title="Medium Text"
+          >
+            <span className="text-base font-bold">A</span>
+          </ToolbarButton>
+          
+          <ToolbarButton
+            onClick={() => editor.chain().focus().setFontSize('18px').run()}
+            title="Large Text"
+          >
+            <span className="text-lg font-bold">A</span>
+          </ToolbarButton>
+          
+          <ToolbarButton
+            onClick={() => editor.chain().focus().setFontSize('24px').run()}
+            title="Extra Large Text"
+          >
+            <span className="text-xl font-bold">A</span>
+          </ToolbarButton>
+          
+          <ToolbarButton
+            onClick={() => editor.chain().focus().unsetFontSize().run()}
+            title="Reset Size"
+          >
+            <span className="text-sm font-bold">↻</span>
+          </ToolbarButton>
+        </div>
 
         <div className="w-px h-5 bg-gray-300 mx-0.5" />
 
