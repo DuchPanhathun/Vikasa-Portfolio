@@ -2,7 +2,6 @@
 
 import {
   HeroSection,
-  KeyBenefitsBar,
   ServicesPreview,
   FeaturedCaseStudy,
   TestimonialsSection,
@@ -15,7 +14,7 @@ export default function Home() {
   return (
     <div className="font-montserrat">
       <HeroSection />
-      <KeyBenefitsBar />
+      {/* <KeyBenefitsBar /> */}
       <ServicesPreview />
       <FeaturedCaseStudy />
       <TestimonialsSection />

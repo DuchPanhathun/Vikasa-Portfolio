@@ -8,24 +8,55 @@ export interface UploadResult {
 
 export async function uploadFile(file: File, folder: string = 'uploads'): Promise<UploadResult> {
   try {
-    const fileExt = file.name.split('.').pop()
-    const fileName = `${Math.random().toString(36).substring(2)}.${fileExt}`
+    // Validate file
+    if (!file) {
+      return { success: false, error: 'No file provided' }
+    }
+
+    // Check file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      return { success: false, error: 'File size must be less than 5MB' }
+    }
+
+    // Check file type
+    if (!file.type.startsWith('image/')) {
+      return { success: false, error: 'Only image files are allowed' }
+    }
+
+    const fileExt = file.name.split('.').pop()?.toLowerCase()
+    const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`
     const filePath = `${folder}/${fileName}`
 
-    const { error: uploadError } = await supabase.storage
-      .from(process.env.SUPABASE_STORAGE_BUCKET || 'uploads')
-      .upload(filePath, file)
+    console.log('Uploading file:', { fileName, filePath, fileSize: file.size, fileType: file.type })
+
+    // Upload file to Supabase Storage
+    const { data, error: uploadError } = await supabase.storage
+      .from('uploads')
+      .upload(filePath, file, {
+        cacheControl: '3600',
+        upsert: false
+      })
 
     if (uploadError) {
+      console.error('Upload error:', uploadError)
       return { success: false, error: uploadError.message }
     }
 
-    const { data } = supabase.storage
-      .from(process.env.SUPABASE_STORAGE_BUCKET || 'uploads')
+    console.log('Upload successful:', data)
+
+    // Get public URL
+    const { data: urlData } = supabase.storage
+      .from('uploads')
       .getPublicUrl(filePath)
 
-    return { success: true, url: data.publicUrl }
+    if (!urlData.publicUrl) {
+      return { success: false, error: 'Failed to get public URL' }
+    }
+
+    console.log('Public URL:', urlData.publicUrl)
+    return { success: true, url: urlData.publicUrl }
   } catch (error) {
+    console.error('File upload error:', error)
     return { 
       success: false, 
       error: error instanceof Error ? error.message : 'Unknown error occurred' 
@@ -36,7 +67,7 @@ export async function uploadFile(file: File, folder: string = 'uploads'): Promis
 export async function deleteFile(filePath: string): Promise<UploadResult> {
   try {
     const { error } = await supabase.storage
-      .from(process.env.SUPABASE_STORAGE_BUCKET || 'uploads')
+      .from('uploads')
       .remove([filePath])
 
     if (error) {

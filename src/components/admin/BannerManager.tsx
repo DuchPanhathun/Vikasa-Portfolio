@@ -44,14 +44,25 @@ export default function BannerManager() {
 
     try {
       setIsSubmitting(true)
+      setError('')
+      
+      console.log('Starting file upload:', file.name, file.size, file.type)
+      
       const result = await uploadFile(file, 'banners')
+      console.log('Upload result:', result)
+      
       if (result.success && result.url) {
         setFormData(prev => ({ ...prev, background_image: result.url || '' }))
+        console.log('Image uploaded successfully:', result.url)
       } else {
-        setError(result.error || 'Failed to upload image')
+        const errorMsg = result.error || 'Failed to upload image'
+        console.error('Upload failed:', errorMsg)
+        setError(errorMsg)
       }
     } catch (error) {
-      setError('Error uploading image: ' + (error instanceof Error ? error.message : 'Unknown error'))
+      const errorMsg = 'Error uploading image: ' + (error instanceof Error ? error.message : 'Unknown error')
+      console.error('Upload error:', error)
+      setError(errorMsg)
     } finally {
       setIsSubmitting(false)
     }

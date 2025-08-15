@@ -24,7 +24,7 @@ const fadeInUp = {
 export default function HeroSection() {
   return (
     <motion.section 
-      className="relative h-[70vh] sm:h-[80vh] flex items-center justify-center bg-gradient-to-r from-vikasa-espresso to-vikasa-latte text-white"
+      className="relative h-screen flex items-center justify-center bg-gradient-to-r from-vikasa-espresso to-vikasa-latte text-white"
       initial="hidden"
       animate="visible"
       variants={fadeIn}
