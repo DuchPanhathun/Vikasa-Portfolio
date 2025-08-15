@@ -1,0 +1,5 @@
+export { default as HeroSection } from './HeroSection'
+export { default as ResourceNavigation } from './ResourceNavigation'
+export { default as BlogArticlesSection } from './BlogArticlesSection'
+export { default as WhitePapersSection } from './WhitePapersSection'
+export { default as FooterCTA } from './FooterCTA'
