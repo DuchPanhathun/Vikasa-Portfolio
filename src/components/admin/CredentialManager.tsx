@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { credentialService, type Credential } from '@/lib/supabaseService'
+import RichTextEditor from '@/components/ui/RichTextEditor'
+import RichTextViewer from '@/components/ui/RichTextViewer'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -167,13 +169,10 @@ export default function CredentialManager() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Details
                 </label>
-                <textarea
-                  value={formData.details}
-                  onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                  rows={3}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-vikasa-espresso"
-                  placeholder="Enter credential details..."
-                  required
+                <RichTextEditor
+                  content={formData.details}
+                  onChange={(content) => setFormData({ ...formData, details: content })}
+                  placeholder="Enter credential details with formatting..."
                 />
               </div>
 
@@ -227,7 +226,9 @@ export default function CredentialManager() {
                 <span className="text-vikasa-espresso text-xl mt-1">{credential.bullet_icon}</span>
                 <div className="flex-1">
                   <h3 className="font-semibold text-gray-900 mb-2">{credential.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{credential.details}</p>
+                  <div className="text-gray-600 leading-relaxed">
+                    <RichTextViewer content={credential.details} className="prose-sm" />
+                  </div>
                   <p className="text-xs text-gray-500 mt-2">
                     Created: {new Date(credential.created_at).toLocaleDateString()}
                   </p>

@@ -50,36 +50,6 @@ export default function ResourceNavigation() {
               <span className="text-vikasa-espresso font-semibold">White Papers & Research</span>
             </Link>
           </motion.div>
-          <motion.div variants={staggerItem}>
-            <Link href="/resource/tools" className="flex items-center bg-white px-6 py-3 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <span className="text-vikasa-espresso font-semibold">Free Tools & Templates</span>
-            </Link>
-          </motion.div>
-          <motion.div variants={staggerItem}>
-            <Link href="/resource/webinars" className="flex items-center bg-white px-6 py-3 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <span className="text-vikasa-espresso font-semibold">Webinars & Videos</span>
-            </Link>
-          </motion.div>
-          <motion.div variants={staggerItem}>
-            <Link href="/resource/ebooks" className="flex items-center bg-white px-6 py-3 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <span className="text-vikasa-espresso font-semibold">E-Books & Guides</span>
-            </Link>
-          </motion.div>
-          <motion.div variants={staggerItem}>
-            <Link href="/resource/library" className="flex items-center bg-white px-6 py-3 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <span className="text-vikasa-espresso font-semibold">Resource Library</span>
-            </Link>
-          </motion.div>
-          <motion.div variants={staggerItem}>
-            <Link href="/resource/newsletter" className="flex items-center bg-white px-6 py-3 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <span className="text-vikasa-espresso font-semibold">Newsletter Archive</span>
-            </Link>
-          </motion.div>
-          <motion.div variants={staggerItem}>
-            <Link href="/resource/community" className="flex items-center bg-white px-6 py-3 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <span className="text-vikasa-espresso font-semibold">Community Forum</span>
-            </Link>
-          </motion.div>
         </motion.div>
       </div>
     </motion.section>

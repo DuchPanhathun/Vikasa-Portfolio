@@ -40,6 +40,11 @@ export default function ArticleManager() {
     date_published: '',
     image: ''
   })
+  
+  // Image upload state
+  const [imageUploadType, setImageUploadType] = useState<'url' | 'file'>('url')
+  const [selectedImageFile, setSelectedImageFile] = useState<File | null>(null)
+  const [imagePreview, setImagePreview] = useState<string>('')
 
   const loadArticleTypes = async () => {
     try {
@@ -158,6 +163,7 @@ export default function ArticleManager() {
       // Reload articles for the selected type
       loadArticlesForType(selectedType.id)
       
+      // Reset form data
       setArticleFormData({ 
         title: '', 
         description: '',
@@ -166,6 +172,10 @@ export default function ArticleManager() {
         date_published: '',
         image: ''
       })
+      // Reset image upload state
+      setImageUploadType('url')
+      setSelectedImageFile(null)
+      setImagePreview('')
       setIsArticleFormOpen(false)
       setEditingArticle(null)
       setError(null)
@@ -185,6 +195,10 @@ export default function ArticleManager() {
       date_published: article.date_published || '',
       image: article.image || ''
     })
+    // Reset image upload state
+    setImageUploadType('url')
+    setSelectedImageFile(null)
+    setImagePreview(article.image || '')
     setIsArticleFormOpen(true)
   }
 
@@ -201,6 +215,33 @@ export default function ArticleManager() {
       setError('Failed to delete article')
       console.error('Delete article error:', err)
     }
+  }
+
+  // Image upload handlers
+  const handleImageFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      setSelectedImageFile(file)
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        const result = event.target?.result as string
+        setImagePreview(result)
+        setArticleFormData({ ...articleFormData, image: result })
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handleImageUrlChange = (url: string) => {
+    setArticleFormData({ ...articleFormData, image: url || '' })
+    setImagePreview(url || '')
+    setSelectedImageFile(null)
+  }
+
+  const clearImage = () => {
+    setSelectedImageFile(null)
+    setImagePreview('')
+    setArticleFormData({ ...articleFormData, image: '' })
   }
 
   if (isLoading) {
@@ -490,16 +531,74 @@ export default function ArticleManager() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Image URL
-                </label>
-                <input
-                  type="url"
-                  value={articleFormData.image}
-                  onChange={(e) => setArticleFormData({ ...articleFormData, image: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-vikasa-espresso"
-                  placeholder="https://example.com/image.jpg"
-                />
+                <div className="flex items-center justify-between mb-3">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Article Image
+                  </label>
+                  <div className="flex space-x-2">
+                    <button
+                      type="button"
+                      onClick={() => setImageUploadType('url')}
+                      className={`px-3 py-1 text-xs rounded-full transition duration-200 ${
+                        imageUploadType === 'url'
+                          ? 'bg-vikasa-espresso text-white'
+                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      URL
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setImageUploadType('file')}
+                      className={`px-3 py-1 text-xs rounded-full transition duration-200 ${
+                        imageUploadType === 'file'
+                          ? 'bg-vikasa-espresso text-white'
+                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      Upload
+                    </button>
+                  </div>
+                </div>
+
+                {imageUploadType === 'url' ? (
+                  <input
+                    type="url"
+                    value={articleFormData.image || ''}
+                    onChange={(e) => handleImageUrlChange(e.target.value)}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-vikasa-espresso"
+                    placeholder="https://example.com/image.jpg"
+                  />
+                ) : (
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageFileChange}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-vikasa-espresso"
+                    key={`file-input-${editingArticle?.id || 'new'}`}
+                  />
+                )}
+
+                {/* Image Preview */}
+                {imagePreview && (
+                  <div className="mt-3">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm text-gray-600">Preview:</span>
+                      <button
+                        type="button"
+                        onClick={clearImage}
+                        className="text-red-600 hover:text-red-800 text-sm"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                    <img 
+                      src={imagePreview} 
+                      alt="Preview"
+                      className="w-full h-32 object-cover rounded border"
+                    />
+                  </div>
+                )}
               </div>
 
               <div className="flex space-x-3 pt-4">
@@ -520,6 +619,10 @@ export default function ArticleManager() {
                       date_published: '',
                       image: ''
                     })
+                    // Reset image upload state
+                    setImageUploadType('url')
+                    setSelectedImageFile(null)
+                    setImagePreview('')
                     setIsArticleFormOpen(false)
                     setEditingArticle(null)
                   }}

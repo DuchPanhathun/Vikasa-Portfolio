@@ -30,6 +30,14 @@ export default function WhitePaperManager() {
     pdf_download_url: ''
   })
 
+  // File upload state
+  const [coverUploadType, setCoverUploadType] = useState<'url' | 'file'>('url')
+  const [pdfUploadType, setPdfUploadType] = useState<'url' | 'file'>('url')
+  const [selectedCoverFile, setSelectedCoverFile] = useState<File | null>(null)
+  const [selectedPdfFile, setSelectedPdfFile] = useState<File | null>(null)
+  const [coverPreview, setCoverPreview] = useState<string>('')
+  const [pdfPreview, setPdfPreview] = useState<string>('')
+
   const loadWhitePapers = async () => {
     try {
       setIsLoading(true)
@@ -64,6 +72,7 @@ export default function WhitePaperManager() {
         setWhitePapers([newPaper, ...whitePapers])
       }
       
+      // Reset form after successful submission
       setFormData({ 
         title: '', 
         description: '',
@@ -72,6 +81,13 @@ export default function WhitePaperManager() {
         cover_photo: '',
         pdf_download_url: ''
       })
+      // Reset upload state
+      setCoverUploadType('url')
+      setPdfUploadType('url')
+      setSelectedCoverFile(null)
+      setSelectedPdfFile(null)
+      setCoverPreview('')
+      setPdfPreview('')
       setIsFormOpen(false)
       setEditingPaper(null)
       setError(null)
@@ -91,6 +107,13 @@ export default function WhitePaperManager() {
       cover_photo: paper.cover_photo || '',
       pdf_download_url: paper.pdf_download_url || ''
     })
+    // Reset upload state
+    setCoverUploadType('url')
+    setPdfUploadType('url')
+    setSelectedCoverFile(null)
+    setSelectedPdfFile(null)
+    setCoverPreview(paper.cover_photo || '')
+    setPdfPreview(paper.pdf_download_url || '')
     setIsFormOpen(true)
   }
 
@@ -104,6 +127,59 @@ export default function WhitePaperManager() {
       setError('Failed to delete white paper')
       console.error('Delete white paper error:', err)
     }
+  }
+
+  // File upload handlers
+  const handleCoverFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      setSelectedCoverFile(file)
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        const result = event.target?.result as string
+        setCoverPreview(result)
+        setFormData({ ...formData, cover_photo: result })
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handleCoverUrlChange = (url: string) => {
+    setFormData({ ...formData, cover_photo: url || '' })
+    setCoverPreview(url || '')
+    setSelectedCoverFile(null)
+  }
+
+  const handlePdfFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      setSelectedPdfFile(file)
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        const result = event.target?.result as string
+        setPdfPreview(file.name)
+        setFormData({ ...formData, pdf_download_url: result })
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handlePdfUrlChange = (url: string) => {
+    setFormData({ ...formData, pdf_download_url: url || '' })
+    setPdfPreview(url || '')
+    setSelectedPdfFile(null)
+  }
+
+  const clearCover = () => {
+    setSelectedCoverFile(null)
+    setCoverPreview('')
+    setFormData({ ...formData, cover_photo: '' })
+  }
+
+  const clearPdf = () => {
+    setSelectedPdfFile(null)
+    setPdfPreview('')
+    setFormData({ ...formData, pdf_download_url: '' })
   }
 
   if (isLoading) {
@@ -294,32 +370,154 @@ export default function WhitePaperManager() {
                 </div>
               </div>
 
+              {/* Cover Photo */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Cover Photo URL
-                </label>
-                <input
-                  type="url"
-                  value={formData.cover_photo}
-                  onChange={(e) => setFormData({ ...formData, cover_photo: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-vikasa-espresso"
-                  placeholder="https://example.com/cover-image.jpg"
-                />
+                <div className="flex items-center justify-between mb-3">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Cover Photo
+                  </label>
+                  <div className="flex space-x-2">
+                    <button
+                      type="button"
+                      onClick={() => setCoverUploadType('url')}
+                      className={`px-3 py-1 text-xs rounded-full transition duration-200 ${
+                        coverUploadType === 'url'
+                          ? 'bg-vikasa-espresso text-white'
+                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      URL
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setCoverUploadType('file')}
+                      className={`px-3 py-1 text-xs rounded-full transition duration-200 ${
+                        coverUploadType === 'file'
+                          ? 'bg-vikasa-espresso text-white'
+                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      Upload
+                    </button>
+                  </div>
+                </div>
+
+                {coverUploadType === 'url' ? (
+                  <input
+                    type="url"
+                    value={formData.cover_photo || ''}
+                    onChange={(e) => handleCoverUrlChange(e.target.value)}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-vikasa-espresso"
+                    placeholder="https://example.com/cover-image.jpg"
+                  />
+                ) : (
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleCoverFileChange}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-vikasa-espresso"
+                    key={`cover-input-${editingPaper?.id || 'new'}`}
+                  />
+                )}
+
+                {/* Cover Preview */}
+                {coverPreview && (
+                  <div className="mt-3">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm text-gray-600">Preview:</span>
+                      <button
+                        type="button"
+                        onClick={clearCover}
+                        className="text-red-600 hover:text-red-800 text-sm"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                    <img 
+                      src={coverPreview} 
+                      alt="Cover Preview"
+                      className="w-full h-32 object-cover rounded border"
+                    />
+                  </div>
+                )}
               </div>
 
+              {/* PDF Download */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  PDF Download URL
-                </label>
-                <input
-                  type="url"
-                  value={formData.pdf_download_url}
-                  onChange={(e) => setFormData({ ...formData, pdf_download_url: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-vikasa-espresso"
-                  placeholder="https://example.com/whitepaper.pdf"
-                />
+                <div className="flex items-center justify-between mb-3">
+                  <label className="block text-sm font-medium text-gray-700">
+                    PDF Download
+                  </label>
+                  <div className="flex space-x-2">
+                    <button
+                      type="button"
+                      onClick={() => setPdfUploadType('url')}
+                      className={`px-3 py-1 text-xs rounded-full transition duration-200 ${
+                        pdfUploadType === 'url'
+                          ? 'bg-vikasa-espresso text-white'
+                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      URL
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPdfUploadType('file')}
+                      className={`px-3 py-1 text-xs rounded-full transition duration-200 ${
+                        pdfUploadType === 'file'
+                          ? 'bg-vikasa-espresso text-white'
+                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      Upload
+                    </button>
+                  </div>
+                </div>
+
+                {pdfUploadType === 'url' ? (
+                  <input
+                    type="url"
+                    value={formData.pdf_download_url || ''}
+                    onChange={(e) => handlePdfUrlChange(e.target.value)}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-vikasa-espresso"
+                    placeholder="https://example.com/whitepaper.pdf"
+                  />
+                ) : (
+                  <input
+                    type="file"
+                    accept="application/pdf,.pdf"
+                    onChange={handlePdfFileChange}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-vikasa-espresso"
+                    key={`pdf-input-${editingPaper?.id || 'new'}`}
+                  />
+                )}
+
+                {/* PDF Preview */}
+                {pdfPreview && (
+                  <div className="mt-3">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm text-gray-600">Selected:</span>
+                      <button
+                        type="button"
+                        onClick={clearPdf}
+                        className="text-red-600 hover:text-red-800 text-sm"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 bg-gray-50 rounded border">
+                      <svg className="w-5 h-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                      </svg>
+                      <span className="text-sm text-gray-700 truncate">
+                        {selectedPdfFile ? selectedPdfFile.name : 'PDF file'}
+                      </span>
+                    </div>
+                  </div>
+                )}
+
                 <p className="text-xs text-gray-500 mt-1">
-                  URL where users can download the PDF version of this white paper
+                  URL or file where users can download the PDF version of this white paper
                 </p>
               </div>
 
@@ -341,6 +539,13 @@ export default function WhitePaperManager() {
                       cover_photo: '',
                       pdf_download_url: ''
                     })
+                    // Reset upload state
+                    setCoverUploadType('url')
+                    setPdfUploadType('url')
+                    setSelectedCoverFile(null)
+                    setSelectedPdfFile(null)
+                    setCoverPreview('')
+                    setPdfPreview('')
                     setIsFormOpen(false)
                     setEditingPaper(null)
                   }}
