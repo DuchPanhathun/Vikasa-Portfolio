@@ -3,10 +3,18 @@ import React from 'react'
 interface ServiceFormModalProps {
   isOpen: boolean
   isEditing: boolean
-  formData: { title: string; summary: string }
-  onFormDataChange: (data: { title: string; summary: string }) => void
+  formData: { title: string; summary: string; image: string }
+  onFormDataChange: (data: { title: string; summary: string; image: string }) => void
   onSubmit: (e: React.FormEvent) => void
   onClose: () => void
+  // Image upload props
+  imageUploadType: 'url' | 'file'
+  onImageUploadTypeChange: (type: 'url' | 'file') => void
+  onImageFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onImageUrlChange: (url: string) => void
+  onClearImage: () => void
+  imagePreview: string
+  selectedImageFile: File | null
 }
 
 export default function ServiceFormModal({
@@ -15,7 +23,14 @@ export default function ServiceFormModal({
   formData,
   onFormDataChange,
   onSubmit,
-  onClose
+  onClose,
+  imageUploadType,
+  onImageUploadTypeChange,
+  onImageFileChange,
+  onImageUrlChange,
+  onClearImage,
+  imagePreview,
+  selectedImageFile
 }: ServiceFormModalProps) {
   if (!isOpen) return null
 
@@ -53,6 +68,78 @@ export default function ServiceFormModal({
               placeholder="Enter service summary..."
               required
             />
+          </div>
+
+          {/* Service Image */}
+          <div>
+            <div className="flex items-center justify-between mb-3">
+              <label className="block text-sm font-medium text-gray-700">
+                Service Image
+              </label>
+              <div className="flex space-x-2">
+                <button
+                  type="button"
+                  onClick={() => onImageUploadTypeChange('url')}
+                  className={`px-3 py-1 text-xs rounded-full transition duration-200 ${
+                    imageUploadType === 'url'
+                      ? 'bg-vikasa-espresso text-white'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  }`}
+                >
+                  URL
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onImageUploadTypeChange('file')}
+                  className={`px-3 py-1 text-xs rounded-full transition duration-200 ${
+                    imageUploadType === 'file'
+                      ? 'bg-vikasa-espresso text-white'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  }`}
+                >
+                  Upload
+                </button>
+              </div>
+            </div>
+
+            {imageUploadType === 'url' ? (
+              <input
+                type="url"
+                value={formData.image || ''}
+                onChange={(e) => onImageUrlChange(e.target.value)}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-vikasa-espresso"
+                placeholder="https://example.com/service-image.jpg"
+              />
+            ) : (
+              <input
+                type="file"
+                accept="image/*"
+                onChange={onImageFileChange}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-vikasa-espresso"
+                key={`service-image-${isEditing ? 'edit' : 'new'}`}
+              />
+            )}
+
+            {/* Image Preview */}
+            {imagePreview && (
+              <div className="mt-3">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm text-gray-600">Preview:</span>
+                  <button
+                    type="button"
+                    onClick={onClearImage}
+                    className="text-red-600 hover:text-red-800 text-sm"
+                  >
+                    Remove
+                  </button>
+                </div>
+                <img 
+                  src={imagePreview} 
+                  alt="Service Preview"
+                  className="w-full h-32 object-cover rounded border"
+                />
+              </div>
+            )}
           </div>
 
           <div className="flex space-x-3">

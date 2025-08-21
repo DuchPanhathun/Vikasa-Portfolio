@@ -174,6 +174,7 @@ export interface Service {
   id: string
   title: string
   summary: string
+  image?: string
   created_at: string
   updated_at: string
   details?: ServiceDetail[]

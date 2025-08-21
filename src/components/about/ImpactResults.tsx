@@ -1,6 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { impactService, type Impact } from '@/lib/supabaseService'
 
 const fadeIn = {
   hidden: { opacity: 0 },
@@ -28,7 +30,8 @@ const staggerItem = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 }
 
-const impactMetrics = [
+// Fallback impact metrics when none exist in database
+const fallbackImpactMetrics = [
   { number: "500+", label: "Clients Served", description: "Organizations transformed across 6 continents" },
   { number: "15,000+", label: "Professionals Trained", description: "Through our executive education programs" },
   { number: "92%", label: "Client Retention", description: "Partners who continue working with us year after year" },
@@ -36,6 +39,32 @@ const impactMetrics = [
 ]
 
 export default function ImpactResults() {
+  const [impacts, setImpacts] = useState<Impact[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchImpacts = async () => {
+      try {
+        const data = await impactService.getAll()
+        setImpacts(data)
+      } catch (error) {
+        console.error('Failed to fetch impacts:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchImpacts()
+  }, [])
+
+  // Use fetched impacts or fallback metrics
+  const displayMetrics = impacts.length > 0 
+    ? impacts.map(impact => ({
+        number: impact.amount_value,
+        label: impact.title,
+        description: impact.description
+      }))
+    : fallbackImpactMetrics
   return (
     <motion.section 
       className="py-16 bg-white"
@@ -54,14 +83,29 @@ export default function ImpactResults() {
             We measure our success through the tangible results we deliver and the lasting difference we make for our clients.
           </p>
         </motion.div>
+
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            {[...Array(4)].map((_, index) => (
+              <div 
+                key={`loading-${index}`} 
+                className="bg-vikasa-espresso-50 p-8 rounded-lg text-center animate-pulse"
+              >
+                <div className="h-12 bg-gray-300 rounded mb-2"></div>
+                <div className="h-6 bg-gray-300 rounded mb-2"></div>
+                <div className="h-4 bg-gray-300 rounded"></div>
+              </div>
+            ))}
+          </div>
+        ) : (
         
         <motion.div 
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
           variants={staggerContainer}
         >
-          {impactMetrics.map((metric, index) => (
+          {displayMetrics.map((metric, index) => (
             <motion.div 
-              key={index} 
+              key={`${metric.label}-${index}`} 
               className="bg-vikasa-espresso-50 p-8 rounded-lg text-center hover:shadow-lg transition-shadow"
               variants={staggerItem}
             >
@@ -71,6 +115,7 @@ export default function ImpactResults() {
             </motion.div>
           ))}
         </motion.div>
+        )}
         
         {/* Social Impact */}
         <motion.div 

@@ -37,7 +37,12 @@ export default function ServicesManager() {
   // Service form state
   const [isServiceFormOpen, setIsServiceFormOpen] = useState(false)
   const [editingService, setEditingService] = useState<Service | null>(null)
-  const [serviceFormData, setServiceFormData] = useState({ title: '', summary: '' })
+  const [serviceFormData, setServiceFormData] = useState({ title: '', summary: '', image: '' })
+  
+  // Image upload state
+  const [imageUploadType, setImageUploadType] = useState<'url' | 'file'>('url')
+  const [selectedImageFile, setSelectedImageFile] = useState<File | null>(null)
+  const [imagePreview, setImagePreview] = useState<string>('')
   
   // Detail form state
   const [isDetailFormOpen, setIsDetailFormOpen] = useState(false)
@@ -97,7 +102,11 @@ export default function ServicesManager() {
 
   const handleServiceEdit = (service: Service) => {
     setEditingService(service)
-    setServiceFormData({ title: service.title, summary: service.summary })
+    setServiceFormData({ title: service.title, summary: service.summary, image: service.image || '' })
+    // Reset image upload state
+    setImageUploadType('url')
+    setSelectedImageFile(null)
+    setImagePreview(service.image || '')
     setIsServiceFormOpen(true)
   }
 
@@ -118,9 +127,40 @@ export default function ServicesManager() {
   }
 
   const handleServiceFormClose = () => {
-    setServiceFormData({ title: '', summary: '' })
+    setServiceFormData({ title: '', summary: '', image: '' })
+    // Reset image upload state
+    setImageUploadType('url')
+    setSelectedImageFile(null)
+    setImagePreview('')
     setIsServiceFormOpen(false)
     setEditingService(null)
+  }
+
+  // Image upload handlers for services
+  const handleServiceImageFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      setSelectedImageFile(file)
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        const result = event.target?.result as string
+        setImagePreview(result)
+        setServiceFormData({ ...serviceFormData, image: result })
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handleServiceImageUrlChange = (url: string) => {
+    setServiceFormData({ ...serviceFormData, image: url || '' })
+    setImagePreview(url || '')
+    setSelectedImageFile(null)
+  }
+
+  const clearServiceImage = () => {
+    setSelectedImageFile(null)
+    setImagePreview('')
+    setServiceFormData({ ...serviceFormData, image: '' })
   }
 
   // Detail handlers
@@ -336,6 +376,13 @@ export default function ServicesManager() {
         onFormDataChange={setServiceFormData}
         onSubmit={handleServiceSubmit}
         onClose={handleServiceFormClose}
+        imageUploadType={imageUploadType}
+        onImageUploadTypeChange={setImageUploadType}
+        onImageFileChange={handleServiceImageFileChange}
+        onImageUrlChange={handleServiceImageUrlChange}
+        onClearImage={clearServiceImage}
+        imagePreview={imagePreview}
+        selectedImageFile={selectedImageFile}
       />
 
       <DetailFormModal
